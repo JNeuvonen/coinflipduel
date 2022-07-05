@@ -1,0 +1,23 @@
+;[
+  {
+    inputs: [[Object]],
+    name: 'createCoinflipDuel',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [[Object]],
+    name: 'deployedCoinflipDuels',
+    outputs: [[Object]],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getDeployedCoinflipDuels',
+    outputs: [[Object]],
+    stateMutability: 'view',
+    type: 'function',
+  },
+]
