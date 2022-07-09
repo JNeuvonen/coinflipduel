@@ -9,11 +9,15 @@
   box-sizing: border-box;
 }
 
-body,
 html {
   font-size: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
   overflow-x: hidden;
 }
 
@@ -30,6 +34,10 @@ html {
   --clr-success-message: #a6db9a;
   --clr-side-nav: #141414;
   --clr-side-nav-link: #a0a1a3;
+}
+
+#root {
+  overflow-x: hidden;
 }
 
 .dark-theme {
