@@ -7,6 +7,7 @@ import '../style/css/style.css'
 import factory from '../ethereum/factory'
 import coinflipduel from '../ethereum/coinflipduel'
 import App from 'next/app'
+import Head from 'next/head'
 const MyApp = ({ Component, pageProps, coinFlipDuelContracts, coinFlips }) => {
   const { updateAccount } = Updaters()
   useEffect(() => {

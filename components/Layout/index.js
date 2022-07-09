@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Updaters from '../../state/utils'
@@ -56,6 +57,12 @@ const Layout = (props) => {
 
   return (
     <div className="background">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Coinflip.app" />
+        <title>Coinflip.app</title>
+      </Head>
       <div className="layout">
         <div className="blur" id="blur"></div>
         <div className="blur" id="blur-2"></div>
