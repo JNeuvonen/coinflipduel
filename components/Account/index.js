@@ -87,7 +87,7 @@ const Account = (props) => {
             style={{ columnGap: '5px', flexBasis: '100%', rowGap: '10px' }}
           >
             <EthereumIcon width={20} height={20} />
-            <h3>Balance: {formatBetsize(balance)}</h3>
+            <h3>Balance: {formatBetsize(balance, 2)}</h3>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export const formatAddress = (address) => {
   )
 }
 
-export const formatBetsize = (wei) => {
+export const formatBetsize = (wei, decimals) => {
   if (wei < Math.pow(10, 7)) {
     return wei + ' Wei'
   }
@@ -24,7 +24,11 @@ export const formatBetsize = (wei) => {
     return String(wei / Math.pow(10, 9)) + ' Gwei'
   }
 
-  return String((wei / Math.pow(10, 18)).toFixed(3)) + ' Eth'
+  if (decimals) {
+    return String((wei / Math.pow(10, 18)).toFixed(decimals)) + ' Eth'
+  }
+
+  return String(wei / Math.pow(10, 18)) + ' Eth'
 }
 
 export const fetchEthPrice = async () => {

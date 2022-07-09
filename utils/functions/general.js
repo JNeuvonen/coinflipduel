@@ -1,6 +1,7 @@
 export const sortOpenTables = (contracts, sort, reverse) => {
   if (sort === '#') {
-    return contracts.reverse()
+    let arrayForSort = [...contracts]
+    return arrayForSort.reverse()
   }
   const compareHelper = (a, b) => {
     if (a > b) {

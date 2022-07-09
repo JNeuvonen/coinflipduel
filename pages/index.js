@@ -72,7 +72,7 @@ const Index = (props) => {
             {player1 ? formatBetsize(contract.history[5]) : '0'}
           </td>
           <td align="center" className="fontWeight500">
-            {formatBetsize(contract.history[2])}
+            {formatBetsize(contract.history[2], false)}
           </td>
           <td
             align="center"
