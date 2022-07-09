@@ -1,0 +1,278 @@
+.contract-table {
+  font-size: 18px;
+  width: 100%;
+  position: relative;
+  border-radius: 10px; }
+  .contract-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--clr-td-borderBottom);
+    color: var(--clr-text); }
+  .contract-table thead th {
+    border-bottom: 1px solid var(--clr-td-borderBottom);
+    padding: 10px;
+    cursor: pointer; }
+  .contract-table tbody tr {
+    cursor: pointer; }
+    .contract-table tbody tr:hover {
+      background-color: #ededed; }
+  .contract-table .tr-activated {
+    background: linear-gradient(-45deg, #ebebeb, #dedede, #d1d1d1, #f5f5a6);
+    background-size: 400% 400%;
+    width: 100%;
+    height: 100%;
+    animation: animate 5s ease infinite; }
+
+@keyframes animate {
+  0% {
+    background-position: 0 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0 50%; } }
+  .contract-table button {
+    margin-top: 7px;
+    border: none;
+    background-color: var(--clr-cta);
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer; }
+    .contract-table button:hover {
+      background-color: var(--clr-cta-hover);
+      box-shadow: 3px 3px 10px -4px black; }
+  @media only screen and (max-width: 750px) {
+    .contract-table {
+      font-size: 15px; } }
+  @media only screen and (max-width: 550px) {
+    .contract-table {
+      font-size: 13px; } }
+
+.index-page h1 {
+  font-size: 18;
+  font-weight: 450;
+  margin-bottom: 10px; }
+
+.background {
+  margin-left: 200px; }
+
+.table-wrapper {
+  background-color: var(--clr-table);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px -4px black; }
+
+.layout {
+  margin: 0 auto;
+  padding: 100px 20px;
+  max-width: 1100px;
+  width: 100%;
+  table-layout: fixed; }
+
+.cta-box {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--clr-text); }
+  .cta-box:hover {
+    box-shadow: 0px 0px 10px -4px black; }
+
+.metamask-connect {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  column-gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: var(--clr-metamask-connect);
+  cursor: pointer; }
+  .metamask-connect:hover {
+    box-shadow: 0px 0px 10px -4px black;
+    background-color: var(--clr-metamask-connect-hover); }
+  .metamask-connect h3 {
+    font-size: 18px; }
+
+.error-message {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--clr-error-message);
+  border-radius: 5px;
+  color: white;
+  position: relative; }
+
+.blur {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+  z-index: 2;
+  justify-content: center;
+  display: none;
+  -webkit-box-pack: center;
+  align-items: center;
+  transition: 0.5s; }
+
+.account {
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 3;
+  max-width: 500px;
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  margin-top: 150px;
+  transform: translateX(-50%);
+  background-color: var(--clr-table); }
+  .account__info-tab {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 10px; }
+  .account h3 {
+    font-weight: 500;
+    font-size: 16px; }
+  .account h2 {
+    font-size: 22px;
+    font-weight: 500; }
+  .account span {
+    font-size: 24px;
+    font-weight: 500; }
+
+.link-cta-button {
+  padding: 5px;
+  background-color: inherit;
+  border: 1px solid var(--clr-cta);
+  color: var(--clr-cta);
+  border-radius: 10px;
+  cursor: pointer; }
+  .link-cta-button:hover {
+    box-shadow: 0px 0px 10px -4px black; }
+
+.side-nav {
+  width: 190px;
+  height: 100vh;
+  background-color: var(--clr-side-nav);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-right: 20px;
+  z-index: 3;
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  overflow: hidden; }
+  .side-nav span {
+    color: var(--clr-side-nav-link);
+    font-size: 15px; }
+  .side-nav h1 {
+    color: white; }
+
+.menu-button {
+  position: absolute;
+  top: 30px;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: var(--clr-table);
+  border-radius: 5px;
+  cursor: pointer; }
+  .menu-button:hover {
+    box-shadow: 0px 0px 10px -4px black; }
+
+.nav-link {
+  padding: 10px;
+  margin-left: -10px;
+  border-radius: 10px; }
+  .nav-link:hover {
+    background-color: #313239; }
+
+.success {
+  padding: 10px;
+  width: 300px;
+  border-radius: 10px;
+  height: 50px;
+  border: 2px solid green;
+  position: absolute;
+  background-color: var(--clr-table);
+  z-index: 4;
+  right: -300px;
+  bottom: 30px;
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
+
+.flex-box {
+  display: flex; }
+
+.space-between {
+  justify-content: space-between; }
+
+.fontWeight300 {
+  font-weight: 300; }
+
+.content-center {
+  justify-content: center; }
+
+.fontWeight400 {
+  font-weight: 400; }
+
+.width100 {
+  width: 100%; }
+
+.fontWeight500 {
+  font-weight: 500; }
+
+.fontWeight600 {
+  font-weight: 600; }
+
+.align-items-center {
+  align-items: center; }
+
+.link-cancel-default {
+  text-decoration: none;
+  color: inherit; }
+
+.flex-wrap {
+  flex-wrap: wrap; }
+
+.flex-direction-column {
+  flex-direction: column; }
+
+.cursor-pointer {
+  cursor: pointer; }
+
+.cursor-default {
+  cursor: default !important; }
+
+.top-right-corner {
+  position: absolute;
+  right: 10px;
+  top: 10px; }
+
+.space-between {
+  justify-content: space-between; }
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden; }
+
+:root {
+  --clr-text: #4486e8;
+  --clr-cta: #d6154c;
+  --clr-cta-2: #15690e;
+  --clr-cta-hover: #9a0730;
+  --clr-td-borderBottom: #d4d4d4;
+  --clr-table: white;
+  --clr-metamask-connect: black;
+  --clr-metamask-connect-hover: #363636;
+  --clr-error-message: #e66074;
+  --clr-success-message: #a6db9a;
+  --clr-side-nav: #141414;
+  --clr-side-nav-link: #a0a1a3; }

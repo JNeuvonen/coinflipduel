@@ -1,0 +1,35 @@
+@import 'app';
+@import 'utils';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+:root {
+  --clr-text: #4486e8;
+  --clr-cta: #d6154c;
+  --clr-cta-2: #15690e;
+  --clr-cta-hover: #9a0730;
+  --clr-td-borderBottom: #d4d4d4;
+  --clr-table: white;
+  --clr-metamask-connect: black;
+  --clr-metamask-connect-hover: #363636;
+  --clr-error-message: #e66074;
+  --clr-success-message: #a6db9a;
+  --clr-side-nav: #141414;
+  --clr-side-nav-link: #a0a1a3;
+}
+
+.dark-theme {
+}
