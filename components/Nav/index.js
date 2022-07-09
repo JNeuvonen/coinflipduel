@@ -5,8 +5,10 @@ import { useRouter } from 'next/router'
 import { Link } from '../../routes'
 import {
   disableBlur,
+  disableBlur2,
   disableSidenav,
   enableBlur,
+  enableBlur2,
   enableSidenav,
 } from '../../utils/functions/css'
 const Nav = () => {
@@ -15,16 +17,14 @@ const Nav = () => {
   const router = useRouter()
 
   useEffect(() => {
-    document.getElementById('blur').addEventListener('click', (e) => {
-      if (bp850) {
-        disableBlur()
-        disableSidenav(true)
-      }
+    document.getElementById('blur-2').addEventListener('click', (e) => {
+      disableSidenav(true)
+      disableBlur2()
     })
   }, [])
 
   const enableNav = () => {
-    enableBlur()
+    enableBlur2()
     setShowNav(true)
     enableSidenav(true)
   }

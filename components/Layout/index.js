@@ -58,6 +58,8 @@ const Layout = (props) => {
     <div className="background">
       <div className="layout">
         <div className="blur" id="blur"></div>
+        <div className="blur" id="blur-2"></div>
+
         <Nav />
         {showError && (
           <ErrorMessage

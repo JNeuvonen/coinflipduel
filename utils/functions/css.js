@@ -24,7 +24,6 @@ export const enableInfoMessage = () => {
 
 export const disableSidenav = (delay) => {
   const nav = document.getElementsByClassName('side-nav')[0]
-
   if (!delay) {
     nav.style.transition = '0s'
   } else {
@@ -36,7 +35,6 @@ export const disableSidenav = (delay) => {
 
 export const enableSidenav = (delay) => {
   const nav = document.getElementsByClassName('side-nav')[0]
-
   nav.style.paddingLeft = '20px'
   nav.style.paddingTop = '40px'
   nav.style.paddingRight = '20px'
@@ -44,4 +42,14 @@ export const enableSidenav = (delay) => {
     nav.style.transition = '1s cubic-bezier(0.075, 0.82, 0.165, 1)'
   }
   nav.style.width = '190px'
+}
+
+export const enableBlur2 = () => {
+  const blur = document.getElementById('blur-2')
+  blur.style.display = 'flex'
+}
+
+export const disableBlur2 = () => {
+  const blur = document.getElementById('blur-2')
+  blur.style.display = 'none'
 }
