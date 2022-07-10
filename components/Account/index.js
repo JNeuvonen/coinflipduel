@@ -29,8 +29,8 @@ const Account = (props) => {
   }, [])
   const clipboardOnClick = () => {
     copyToClipBoard(account[0])
+    updateInfoMessageTimeout(2500)
     updateInfoMessage('Copied to clipboard')
-    updateInfoMessageTimeout(5000)
   }
   return (
     <div className="account">

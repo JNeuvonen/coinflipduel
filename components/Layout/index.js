@@ -56,6 +56,7 @@ const Layout = (props) => {
   }, [errorMessage])
 
   useEffect(() => {
+    console.log(infoMessage, infoMessageTimeout)
     if (infoMessage !== null) {
       enableInfoMessage()
       setTimeout(() => {

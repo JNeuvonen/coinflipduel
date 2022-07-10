@@ -10,14 +10,13 @@ import { formatBetsize } from '../utils/functions/ethereumUtils'
 import { useSelector } from 'react-redux'
 import factory from '../ethereum/factory'
 import Updaters from '../state/utils'
-import { updateInfoMessageTimeout } from '../state/action-creators'
 const Table = (props) => {
   const [tableName, setTableName] = useState('')
   const [tableNameError, setTableNameError] = useState('')
   const [minimumStake, setMinimumStake] = useState('')
   const [minimumStakeError, setMinimumStakeError] = useState('')
   const [dropDownValue, setDropDownValue] = useState('ETH')
-  const { updateInfoMessage } = Updaters()
+  const { updateInfoMessage, updateInfoMessageTimeout } = Updaters()
   const account = useSelector((state) => state.account)
 
   useEffect(() => {
@@ -95,35 +94,32 @@ const Table = (props) => {
       const deployedContract = await factory.methods
         .createCoinflipDuel(minBet, tableName)
         .send({ from: account[0] })
-      if (deployedContract) {
-        updateInfoMessage(
-          <div>
-            Succesfully deployed a contract.
-            <div className="">
-              <a
-                className="flex-box flex-wrap align-items-center cursor-pointer link-cancel-default"
-                href={`https://rinkeby.etherscan.io/tx/${deployedContract.transactionHash}`}
-                target="_blank"
+      updateInfoMessageTimeout(10000)
+      updateInfoMessage(
+        <div>
+          Succesfully deployed a contract.
+          <div className="">
+            <a
+              className="flex-box flex-wrap align-items-center cursor-pointer link-cancel-default"
+              href={`https://rinkeby.etherscan.io/tx/${deployedContract.transactionHash}`}
+              target="_blank"
+            >
+              <LinkIcon width={20} height={20} />
+              <p
+                style={{
+                  fontWeight: 300,
+                  marginLeft: 5,
+                  fontSize: 17,
+                  textDecoration: 'underline',
+                }}
+                className="cursor-pointer"
               >
-                <LinkIcon width={20} height={20} />
-                <p
-                  style={{
-                    fontWeight: 300,
-                    marginLeft: 5,
-                    fontSize: 17,
-                    textDecoration: 'underline',
-                  }}
-                  className="cursor-pointer"
-                >
-                  View on etherscan
-                </p>
-              </a>
-            </div>
+                View on etherscan
+              </p>
+            </a>
           </div>
-        )
-
-        updateInfoMessageTimeout(30000)
-      }
+        </div>
+      )
     } catch (err) {
       console.log(err.message, 'test')
     }
