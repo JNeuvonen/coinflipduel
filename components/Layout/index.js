@@ -10,6 +10,7 @@ import {
 import Account from '../Account'
 import ErrorMessage from '../ErrorMessage'
 import InfoMessage from '../InfoMessage'
+import LoadingSpinner from '../LoadingSpinner'
 import MetamaskConnect from '../MetamaskConnect'
 import Nav from '../Nav'
 const Layout = (props) => {
@@ -18,8 +19,8 @@ const Layout = (props) => {
   const [infoMessageBoolean, setInfoMessageBoolean] = useState(false)
   const errorMessage = useSelector((state) => state.errorMessage)
   const infoMessage = useSelector((state) => state.infoMessage)
+  const [spinner, setSpinner] = useState(true)
   const { updateErrorMessage, updateInfoMessage } = Updaters()
-
   const errorCancel = () => {
     setShowError(false)
     updateErrorMessage(null)
@@ -35,6 +36,10 @@ const Layout = (props) => {
       disableBlur()
       setMetamaskClick(false)
     })
+
+    setTimeout(() => {
+      setSpinner(false)
+    }, [2000])
   }, [])
 
   useMemo(() => {
@@ -63,6 +68,9 @@ const Layout = (props) => {
         <meta name="description" content="Coinflip.app" />
         <title>Coinflip.app</title>
       </Head>
+
+      {spinner && <LoadingSpinner />}
+
       <div className="layout">
         <div className="blur" id="blur"></div>
         <div className="blur" id="blur-2"></div>

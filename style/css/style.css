@@ -182,7 +182,8 @@
 .nav-link {
   padding: 10px;
   margin-left: -10px;
-  border-radius: 10px; }
+  border-radius: 10px;
+  cursor: pointer; }
   .nav-link:hover {
     background-color: #313239; }
 
@@ -198,6 +199,15 @@
   right: -300px;
   bottom: 30px;
   transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
+
+.loading-spinner {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: var(--clr-table);
+  z-index: 10; }
 
 .flex-box {
   display: flex; }
@@ -249,6 +259,12 @@
 
 .space-between {
   justify-content: space-between; }
+
+.centered {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
 
 *,
 *::before,

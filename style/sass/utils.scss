@@ -61,3 +61,10 @@
 .space-between {
   justify-content: space-between;
 }
+
+.centered {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

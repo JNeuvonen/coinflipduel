@@ -8,10 +8,35 @@ import factory from '../ethereum/factory'
 import coinflipduel from '../ethereum/coinflipduel'
 import App from 'next/app'
 import Head from 'next/head'
-const MyApp = ({ Component, pageProps, coinFlipDuelContracts, coinFlips }) => {
+import Layout from '../components/Layout'
+const MyApp = ({ Component, pageProps }) => {
   const { updateAccount } = Updaters()
+  const [coinFlips, setCoinflips] = useState([])
+  const [coinFlipDuelContracts, setCoinflipHistories] = useState([])
   useEffect(() => {
     const asyncHelper = async () => {
+      const coinflipDuelAddresses = await factory.methods
+        .getDeployedCoinflipDuels()
+        .call()
+      const coinFlipDuelContractsHelper = []
+      const coinFlipsHelper = []
+
+      for (let i = 0; i < coinflipDuelAddresses.length; i++) {
+        const coinflipDuel = await coinflipduel(coinflipDuelAddresses[i])
+        const coinflipDuelHistory = await coinflipDuel.methods
+          .getSummary()
+          .call()
+        const dict = { contract: coinflipDuel, history: coinflipDuelHistory }
+        coinFlipDuelContractsHelper.push(dict)
+
+        if (coinflipDuelHistory[0].length > 0) {
+          coinFlipsHelper.push(coinflipDuelHistory[0])
+        }
+      }
+
+      setCoinflips(coinFlipsHelper[0])
+      setCoinflipHistories(coinFlipDuelContractsHelper)
+
       let accounts = await web3.eth.getAccounts()
       updateAccount(accounts)
     }
@@ -28,37 +53,16 @@ const MyApp = ({ Component, pageProps, coinFlipDuelContracts, coinFlips }) => {
   return (
     <>
       <Provider store={store}>
-        <Component
-          {...pageProps}
-          coinFlipDuelContracts={coinFlipDuelContracts}
-          coinFlips={coinFlips}
-        />
+        <Layout coinFlips={coinFlips}>
+          <Component
+            {...pageProps}
+            coinFlipDuelContracts={coinFlipDuelContracts}
+            coinFlips={coinFlips}
+          />
+        </Layout>
       </Provider>
     </>
   )
-}
-
-MyApp.getInitialProps = async (context) => {
-  const coinflipDuelAddresses = await factory.methods
-    .getDeployedCoinflipDuels()
-    .call()
-  const coinFlipDuelContracts = []
-  let coinFlips = []
-
-  const pageProps = await App.getInitialProps(context)
-
-  for (let i = 0; i < coinflipDuelAddresses.length; i++) {
-    const coinflipDuel = await coinflipduel(coinflipDuelAddresses[i])
-    const coinflipDuelHistory = await coinflipDuel.methods.getSummary().call()
-    const dict = { contract: coinflipDuel, history: coinflipDuelHistory }
-    coinFlipDuelContracts.push(dict)
-
-    if (coinflipDuelHistory[0].length > 0) {
-      coinFlips.push(coinflipDuelHistory[0])
-    }
-  }
-
-  return { ...pageProps, coinFlipDuelContracts, coinFlips: coinFlips[0] }
 }
 
 export default wrapper.withRedux(MyApp)

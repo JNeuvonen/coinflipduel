@@ -1,16 +1,12 @@
+import useMediaQuery from '@mui/material/useMediaQuery'
 import React, { useEffect, useState } from 'react'
 import InfoPanel from '../components/InfoPanel'
-import Layout from '../components/Layout'
-import coinflipduel from '../ethereum/coinflipduel'
-import factory from '../ethereum/factory'
 import {
   formatAddress,
   formatBetsize,
   getContractData,
 } from '../utils/functions/ethereumUtils'
 import { sortOpenTables } from '../utils/functions/general'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import web3 from '../ethereum/web3'
 
 const Index = (props) => {
   const [contractData, setContractData] = useState(
@@ -158,67 +154,65 @@ const Index = (props) => {
   )
 
   return (
-    <Layout>
-      <div className="index-page">
-        <InfoPanel contractData={contractData} />
-        <h1 style={{ marginTop: 15 }}>Open Tables</h1>
-        <div className="table-wrapper">
-          <table className="contract-table" cellSpacing={0}>
-            <thead>
-              <tr>
-                {openTableHeaders.map((item, i) => {
-                  return (
-                    <th
-                      className="fontWeight600"
-                      key={i}
-                      onClick={() => {
-                        if (openTableSortType === item) {
-                          setOpenTableSortRev(!openTableSortRev)
-                        } else {
-                          setOpenTableSortType(item)
-                          setOpenTableSortRev(false)
-                        }
-                      }}
-                    >
-                      {item}
-                    </th>
-                  )
-                })}
-              </tr>
-            </thead>
-            <tbody>{renderOpenTables()}</tbody>
-          </table>
-        </div>
-        <h1 style={{ marginTop: 15 }}>Recent Coinflips</h1>
-        <div className="table-wrapper">
-          <table className="contract-table" cellSpacing={0}>
-            <thead>
-              <tr>
-                {coinFlipsHeaders.map((item, i) => {
-                  return (
-                    <th
-                      className="fontWeight600"
-                      key={i}
-                      onClick={() => {
-                        if (coinFlipsSortType === item) {
-                          setCoinFlipsSortRev(!coinFlipsSortRev)
-                        } else {
-                          setCoinFlipsSortType(item)
-                          setCoinFlipsSortRev(false)
-                        }
-                      }}
-                    >
-                      {item}
-                    </th>
-                  )
-                })}
-              </tr>
-            </thead>
-            <tbody>{renderRecentCoinflips()}</tbody>
-          </table>
-        </div>
+    <div className="index-page">
+      <InfoPanel contractData={contractData} />
+      <h1 style={{ marginTop: 15 }}>Open Tables</h1>
+      <div className="table-wrapper">
+        <table className="contract-table" cellSpacing={0}>
+          <thead>
+            <tr>
+              {openTableHeaders.map((item, i) => {
+                return (
+                  <th
+                    className="fontWeight600"
+                    key={i}
+                    onClick={() => {
+                      if (openTableSortType === item) {
+                        setOpenTableSortRev(!openTableSortRev)
+                      } else {
+                        setOpenTableSortType(item)
+                        setOpenTableSortRev(false)
+                      }
+                    }}
+                  >
+                    {item}
+                  </th>
+                )
+              })}
+            </tr>
+          </thead>
+          <tbody>{renderOpenTables()}</tbody>
+        </table>
       </div>
-    </Layout>
+      <h1 style={{ marginTop: 15 }}>Recent Coinflips</h1>
+      <div className="table-wrapper">
+        <table className="contract-table" cellSpacing={0}>
+          <thead>
+            <tr>
+              {coinFlipsHeaders.map((item, i) => {
+                return (
+                  <th
+                    className="fontWeight600"
+                    key={i}
+                    onClick={() => {
+                      if (coinFlipsSortType === item) {
+                        setCoinFlipsSortRev(!coinFlipsSortRev)
+                      } else {
+                        setCoinFlipsSortType(item)
+                        setCoinFlipsSortRev(false)
+                      }
+                    }}
+                  >
+                    {item}
+                  </th>
+                )
+              })}
+            </tr>
+          </thead>
+          <tbody>{renderRecentCoinflips()}</tbody>
+        </table>
+      </div>
+    </div>
   )
 }
 

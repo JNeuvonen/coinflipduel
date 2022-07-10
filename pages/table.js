@@ -2,9 +2,9 @@ import React from 'react'
 import Layout from '../components/Layout'
 const Table = () => {
   return (
-    <Layout>
+    <div className="">
       <h1>Test</h1>
-    </Layout>
+    </div>
   )
 }
 export default Table

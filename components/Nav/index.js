@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from '@mui/material'
-import { DuelIcon, MenuIcon, OverviewIcon, SiteIcon } from '../../utils/icons'
 import { useRouter } from 'next/router'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from '../../routes'
 import {
-  disableBlur,
   disableBlur2,
   disableSidenav,
-  enableBlur,
   enableBlur2,
   enableSidenav,
 } from '../../utils/functions/css'
+import { DuelIcon, MenuIcon, OverviewIcon, SiteIcon } from '../../utils/icons'
 const Nav = () => {
   const bp850 = useMediaQuery('(max-width:850px)')
   const [showNav, setShowNav] = useState(false)
-  const router = useRouter()
+  const router = useRouter().pathname
 
   useEffect(() => {
     document.getElementById('blur-2').addEventListener('click', (e) => {
@@ -29,17 +27,23 @@ const Nav = () => {
     enableSidenav(true)
   }
 
+  useMemo(() => {
+    if (bp850) {
+      disableSidenav(true)
+      disableBlur2()
+    }
+  }, [router])
   const GetLinkRender = ({ icon, text, route }) => {
-    const activatedStyles = router.pathname === route ? true : false
+    const activatedStyles = router === route ? true : false
     return (
-      <div
-        style={{
-          marginTop: 15,
-          backgroundColor: activatedStyles ? '#313239' : null,
-        }}
-        className="nav-link"
-      >
-        <Link route={route}>
+      <Link route={route}>
+        <div
+          style={{
+            marginTop: 15,
+            backgroundColor: activatedStyles ? '#313239' : null,
+          }}
+          className="nav-link"
+        >
           <a
             style={{ columnGap: '10px' }}
             className="flex-box align-items-center link-cancel-default"
@@ -50,8 +54,8 @@ const Nav = () => {
               {text}
             </span>
           </a>
-        </Link>
-      </div>
+        </div>
+      </Link>
     )
   }
 
