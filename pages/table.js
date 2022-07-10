@@ -10,6 +10,7 @@ import { formatBetsize } from '../utils/functions/ethereumUtils'
 import { useSelector } from 'react-redux'
 import factory from '../ethereum/factory'
 import Updaters from '../state/utils'
+import { updateInfoMessageType } from '../state/action-creators'
 const Table = (props) => {
   const [tableName, setTableName] = useState('')
   const [tableNameError, setTableNameError] = useState('')
@@ -95,6 +96,7 @@ const Table = (props) => {
         .createCoinflipDuel(minBet, tableName)
         .send({ from: account[0] })
       updateInfoMessageTimeout(10000)
+      updateInfoMessageType('success')
       updateInfoMessage(
         <div>
           Succesfully deployed a contract.
@@ -121,7 +123,9 @@ const Table = (props) => {
         </div>
       )
     } catch (err) {
-      console.log(err.message, 'test')
+      updateInfoMessage(err.message)
+      updateInfoMessageTimeout(10000)
+      updateInfoMessageType('failure')
     }
   }
   return (

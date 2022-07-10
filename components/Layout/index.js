@@ -23,7 +23,8 @@ const Layout = (props) => {
   const errorMessage = useSelector((state) => state.errorMessage)
   const infoMessage = useSelector((state) => state.infoMessage)
   const [spinner, setSpinner] = useState(true)
-  const { updateErrorMessage, updateInfoMessage } = Updaters()
+  const { updateErrorMessage, updateInfoMessage, updateInfoMessageType } =
+    Updaters()
   const errorCancel = () => {
     setShowError(false)
     updateErrorMessage(null)
@@ -56,7 +57,6 @@ const Layout = (props) => {
   }, [errorMessage])
 
   useEffect(() => {
-    console.log(infoMessage, infoMessageTimeout)
     if (infoMessage !== null) {
       enableInfoMessage()
       setTimeout(() => {
@@ -66,7 +66,7 @@ const Layout = (props) => {
       infoMessageCancel()
     }
   }, [infoMessage])
-
+  console.log(infoMessageType)
   return (
     <div className="background">
       <Head>
@@ -92,7 +92,7 @@ const Layout = (props) => {
 
         <MetamaskConnect setMetamaskOnClick={setMetamaskClick} />
 
-        <InfoMessage text={infoMessage} type="success"></InfoMessage>
+        <InfoMessage text={infoMessage} type={infoMessageType}></InfoMessage>
 
         {metamaskClick && <Account setMetamaskClick={setMetamaskClick} />}
         {props.children}

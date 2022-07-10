@@ -12,8 +12,10 @@ export const disableBlur = () => {
 
 export const disableInfoMessage = () => {
   const success = document.getElementsByClassName('success')[0]
-  success.style.transition = '0s'
-  success.style.right = '-300px'
+  if (success) {
+    success.style.transition = '0s'
+    success.style.right = '-300px'
+  }
 }
 
 export const enableInfoMessage = () => {
@@ -52,4 +54,20 @@ export const enableBlur2 = () => {
 export const disableBlur2 = () => {
   const blur = document.getElementById('blur-2')
   blur.style.display = 'none'
+}
+
+export const changeInfoMessageColor = (type) => {
+  const success = document.getElementsByClassName('success')[0]
+  console.log(type)
+  if (success) {
+    if (type === 'success') {
+      success.style.border = '2px solid green'
+      success.style.backgroundColor = 'white'
+      success.style.color = 'black'
+    } else {
+      success.style.border = '2px solid red'
+      success.style.backgroundColor = '#e66074'
+      success.style.color = 'white'
+    }
+  }
 }

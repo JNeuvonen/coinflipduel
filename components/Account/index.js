@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import web3 from '../../ethereum/web3'
-import { updateInfoMessageType } from '../../state/action-creators'
 import Updaters from '../../state/utils'
 import { disableBlur } from '../../utils/functions/css'
 import {
@@ -9,17 +8,12 @@ import {
   formatBetsize,
 } from '../../utils/functions/ethereumUtils'
 import { copyToClipBoard } from '../../utils/functions/general'
-import {
-  CancelIcon,
-  CopyIcon,
-  EthereumIcon,
-  KeyIcon,
-  LinkIcon,
-} from '../../utils/icons'
+import { CancelIcon, CopyIcon, EthereumIcon, LinkIcon } from '../../utils/icons'
 const Account = (props) => {
   const account = useSelector((state) => state.account)
   const [balance, setBalance] = useState(null)
-  const { updateInfoMessage, updateInfoMessageTimeout } = Updaters()
+  const { updateInfoMessage, updateInfoMessageTimeout, updateInfoMessageType } =
+    Updaters()
   useEffect(() => {
     const asyncHelper = async () => {
       const balance = await web3.eth.getBalance(account[0])
@@ -31,6 +25,7 @@ const Account = (props) => {
     copyToClipBoard(account[0])
     updateInfoMessageTimeout(2500)
     updateInfoMessage('Copied to clipboard')
+    updateInfoMessageType('success')
   }
   return (
     <div className="account">
