@@ -9,6 +9,7 @@ import {
   enableSidenav,
 } from '../../utils/functions/css'
 import { DuelIcon, MenuIcon, OverviewIcon, SiteIcon } from '../../utils/icons'
+import SpinningBtc from '../SpinningBtc'
 const Nav = () => {
   const bp850 = useMediaQuery('(max-width:850px)')
   const [showNav, setShowNav] = useState(false)
@@ -82,7 +83,7 @@ const Nav = () => {
               style={{ columnGap: '10px' }}
               className="link-cancel-default flex-box align-items center cursor=pointer"
             >
-              <SiteIcon width={25} height={25} />
+              <SpinningBtc width={25} height={25} centered={false} />
               <h2
                 style={{
                   fontWeight: 800,

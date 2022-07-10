@@ -32,8 +32,14 @@ const InfoPanel = (props) => {
 
   return (
     <div
-      style={{ fontSize: 18, rowGap: '10px', columnGap: '20px' }}
-      className="flex-box fontWeight500 flex-wrap align-items-center"
+      style={{
+        fontSize: 17,
+        rowGap: '10px',
+        columnGap: '20px',
+        padding: '10px',
+        borderRadius: '10px',
+      }}
+      className="flex-box fontWeight500 flex-wrap align-items-center default-shadow"
     >
       <div className="flex-box align-items-center">
         <EthereumIcon width={20} height={20} />
