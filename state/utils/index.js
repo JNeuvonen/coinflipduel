@@ -4,9 +4,20 @@ import * as actionCreators from '../../state/action-creators/index'
 
 const Updaters = () => {
   const dispatch = useDispatch()
-  const { updateAccount, updateErrorMessage, updateInfoMessage } =
-    bindActionCreators(actionCreators, dispatch)
-  return { updateAccount, updateErrorMessage, updateInfoMessage }
+  const {
+    updateAccount,
+    updateErrorMessage,
+    updateInfoMessage,
+    updateInfoMessageType,
+    updateInfoMessageTimeout,
+  } = bindActionCreators(actionCreators, dispatch)
+  return {
+    updateAccount,
+    updateErrorMessage,
+    updateInfoMessage,
+    updateInfoMessageType,
+    updateInfoMessageTimeout,
+  }
 }
 
 export default Updaters

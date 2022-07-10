@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { updateInfoMessageType } from '../../state/action-creators'
 import Updaters from '../../state/utils'
 import {
   disableBlur,
@@ -16,7 +17,9 @@ import Nav from '../Nav'
 const Layout = (props) => {
   const [showError, setShowError] = useState(false)
   const [metamaskClick, setMetamaskClick] = useState(false)
-  const [infoMessageBoolean, setInfoMessageBoolean] = useState(false)
+  const infoMessageType = useSelector((state) => state.infoMessageType)
+  const infoMessageTimeout = useSelector((state) => state.infoMessageTimeout)
+
   const errorMessage = useSelector((state) => state.errorMessage)
   const infoMessage = useSelector((state) => state.infoMessage)
   const [spinner, setSpinner] = useState(true)
@@ -29,6 +32,7 @@ const Layout = (props) => {
   const infoMessageCancel = () => {
     disableInfoMessage()
     updateInfoMessage(null)
+    updateInfoMessageType(null)
   }
 
   useEffect(() => {
@@ -42,7 +46,7 @@ const Layout = (props) => {
     }, [2000])
   }, [])
 
-  useMemo(() => {
+  useEffect(() => {
     if (errorMessage !== null) {
       setShowError(true)
       setTimeout(() => {
@@ -51,12 +55,14 @@ const Layout = (props) => {
     }
   }, [errorMessage])
 
-  useMemo(() => {
+  useEffect(() => {
     if (infoMessage !== null) {
       enableInfoMessage()
       setTimeout(() => {
         infoMessageCancel()
-      }, [5000])
+      }, [infoMessageTimeout])
+    } else {
+      infoMessageCancel()
     }
   }, [infoMessage])
 
@@ -85,7 +91,7 @@ const Layout = (props) => {
 
         <MetamaskConnect setMetamaskOnClick={setMetamaskClick} />
 
-        <InfoMessage type="success" text={infoMessage}></InfoMessage>
+        <InfoMessage text={infoMessage} type="success"></InfoMessage>
 
         {metamaskClick && <Account setMetamaskClick={setMetamaskClick} />}
         {props.children}

@@ -192,7 +192,7 @@
   padding: 10px;
   width: 300px;
   border-radius: 10px;
-  height: 50px;
+  height: max-content;
   border: 2px solid green;
   position: absolute;
   background-color: var(--clr-table);
@@ -214,6 +214,68 @@
   background-color: var(--clr-background);
   height: 100vh;
   z-index: 2; }
+
+.table h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: 20px; }
+
+.table__cta {
+  padding: 10px;
+  border: none;
+  background-color: var(--clr-cta);
+  border-radius: 10px;
+  width: 200px;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  filter: opacity(0.3); }
+  .table__cta:hover {
+    box-shadow: 0px 0px 10px -4px black;
+    background-color: var(--clr-cta-hover); }
+
+.table__form {
+  width: 100%;
+  border: 1px solid var(--clr-border);
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 50px;
+  background-color: var(--clr-table); }
+  .table__form input {
+    height: 35px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 30px;
+    margin-top: 5px; }
+  .table__form .eth-input {
+    border-radius: 5px;
+    position: relative; }
+    .table__form .eth-input:focus-within :nth-child(2) {
+      border: 2px solid black !important; }
+    .table__form .eth-input :first-child {
+      border-right: 0px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      height: 30px;
+      margin-top: 5px;
+      color: black;
+      font-size: 20px; }
+    .table__form .eth-input :nth-child(2) {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+      padding-left: 5px; }
+    .table__form .eth-input input {
+      border-radius: 0px; }
+  .table__form label {
+    color: var(--clr-text);
+    font-size: 20px;
+    font-weight: 500; }
+  .table__form p {
+    color: #bf5656;
+    font-weight: 700;
+    font-size: 15px; }
 
 .flex-box {
   display: flex; }
@@ -272,6 +334,11 @@
   top: 50%;
   transform: translate(-50%, -50%); }
 
+.centered-horizontal {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); }
+
 .default-shadow {
   box-shadow: 0px 0px 10px -4px black; }
 
@@ -305,7 +372,8 @@ body {
   --clr-success-message: #a6db9a;
   --clr-side-nav: #141414;
   --clr-side-nav-link: #a0a1a3;
-  --clr-background: rgb(242, 243, 244); }
+  --clr-background: rgb(242, 243, 244);
+  --clr-border: #b6b8b6; }
 
 #root {
   overflow-x: hidden; }

@@ -24,3 +24,21 @@ export const updateInfoMessage = (data) => {
     })
   }
 }
+
+export const updateInfoMessageType = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'updateInfoMessageType',
+      payload: data,
+    })
+  }
+}
+
+export const updateInfoMessageTimeout = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'updateInfoMessageTimeout',
+      payload: data,
+    })
+  }
+}

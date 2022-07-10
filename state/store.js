@@ -9,6 +9,8 @@ const initalState = {
   account: null,
   errorMessage: null,
   infoMessage: null,
+  infoMessageType: null,
+  infoMessageTimeout: null,
 }
 
 // middleware

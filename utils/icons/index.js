@@ -310,3 +310,32 @@ export const MenuIcon = ({ width, height, fill }) => {
     </svg>
   )
 }
+
+export const InfoIcon = ({ width, height, fill }) => {
+  return (
+    <svg
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={width}
+      height={height}
+    >
+      {' '}
+      <path d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11 7 L 11 9 L 13 9 L 13 7 L 11 7 z M 11 11 L 11 17 L 13 17 L 13 11 L 11 11 z" />
+    </svg>
+  )
+}
+
+export const ChevronDown = ({ width, height }) => {
+  return (
+    <svg
+      fill="#000000"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 30 30"
+      width={width}
+      height={height}
+    >
+      <path d="M3,12v-2c0-0.386,0.223-0.738,0.572-0.904s0.762-0.115,1.062,0.13L15,17.708l10.367-8.482 c0.299-0.245,0.712-0.295,1.062-0.13C26.779,9.261,27,9.614,27,10v2c0,0.3-0.135,0.584-0.367,0.774l-11,9 c-0.369,0.301-0.898,0.301-1.267,0l-11-9C3.135,12.584,3,12.3,3,12z" />
+    </svg>
+  )
+}

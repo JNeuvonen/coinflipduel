@@ -65,6 +65,31 @@ export const getDuelInfo = (data) => {
   data.forEach((item) => {
     ret += Number(item[2])
   })
-  console.log(ret)
   return ret
+}
+
+export const tableNameAlreadyExists = (contracts, name) => {
+  let ret = false
+
+  for (let i = 0; i < contracts.length; i++) {
+    if (name.toLowerCase() === contracts[i].history[1].toLowerCase()) {
+      return true
+    }
+  }
+  return false
+}
+
+export const containsNumber = (str) => {
+  return /[0-9]/.test(str)
+}
+
+export const upperCase = (str) => {
+  if (str.length > 0) {
+    if (str[0].match(/^[A-Z]/)) {
+      return false
+    } else {
+      return true
+    }
+  }
+  return false
 }

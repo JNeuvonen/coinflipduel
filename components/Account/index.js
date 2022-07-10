@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import web3 from '../../ethereum/web3'
+import { updateInfoMessageType } from '../../state/action-creators'
 import Updaters from '../../state/utils'
 import { disableBlur } from '../../utils/functions/css'
 import {
@@ -18,7 +19,7 @@ import {
 const Account = (props) => {
   const account = useSelector((state) => state.account)
   const [balance, setBalance] = useState(null)
-  const { updateInfoMessage } = Updaters()
+  const { updateInfoMessage, updateInfoMessageTimeout } = Updaters()
   useEffect(() => {
     const asyncHelper = async () => {
       const balance = await web3.eth.getBalance(account[0])
@@ -29,6 +30,7 @@ const Account = (props) => {
   const clipboardOnClick = () => {
     copyToClipBoard(account[0])
     updateInfoMessage('Copied to clipboard')
+    updateInfoMessageTimeout(5000)
   }
   return (
     <div className="account">
