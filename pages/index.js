@@ -155,8 +155,8 @@ const Index = (props) => {
 
   return (
     <div className="index-page">
-      <InfoPanel contractData={contractData} />
-      <h1 style={{ marginTop: 15 }}>Open Tables</h1>
+      <InfoPanel contractData={coinFlipsList} />
+      <h1 style={{ marginTop: 15, fontSize: 23 }}>Open Tables</h1>
       <div className="table-wrapper">
         <table className="contract-table" cellSpacing={0}>
           <thead>
@@ -184,7 +184,7 @@ const Index = (props) => {
           <tbody>{renderOpenTables()}</tbody>
         </table>
       </div>
-      <h1 style={{ marginTop: 15 }}>Recent Coinflips</h1>
+      <h1 style={{ marginTop: 15, fontSize: 23 }}>Recent Coinflips</h1>
       <div className="table-wrapper">
         <table className="contract-table" cellSpacing={0}>
           <thead>

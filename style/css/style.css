@@ -48,8 +48,8 @@
       font-size: 13px; } }
 
 .index-page h1 {
-  font-size: 18;
-  font-weight: 450;
+  font-size: 23;
+  font-weight: 500;
   margin-bottom: 10px; }
 
 .background {
@@ -62,7 +62,7 @@
 
 .layout {
   margin: 0 auto;
-  padding: 100px 20px;
+  padding: 100px 40px;
   max-width: 1100px;
   width: 100%;
   overflow-x: hidden; }
@@ -99,6 +99,7 @@
   position: relative; }
 
 .blur {
+  cursor: pointer;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -209,6 +210,11 @@
   background-color: var(--clr-table);
   z-index: 10; }
 
+.background {
+  background-color: var(--clr-background);
+  height: 100vh;
+  z-index: 2; }
+
 .flex-box {
   display: flex; }
 
@@ -298,7 +304,8 @@ body {
   --clr-error-message: #e66074;
   --clr-success-message: #a6db9a;
   --clr-side-nav: #141414;
-  --clr-side-nav-link: #a0a1a3; }
+  --clr-side-nav-link: #a0a1a3;
+  --clr-background: rgb(242, 243, 244); }
 
 #root {
   overflow-x: hidden; }

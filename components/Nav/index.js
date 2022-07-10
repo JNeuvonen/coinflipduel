@@ -9,7 +9,8 @@ import {
   enableSidenav,
 } from '../../utils/functions/css'
 import { DuelIcon, MenuIcon, OverviewIcon, SiteIcon } from '../../utils/icons'
-import SpinningBtc from '../SpinningBtc'
+import PermaLoopAnimation from '../PermaLoopAnimation'
+import btcJSON from '../../assets/JSON/icons8-bitcoin (1).json'
 const Nav = () => {
   const bp850 = useMediaQuery('(max-width:850px)')
   const [showNav, setShowNav] = useState(false)
@@ -68,7 +69,7 @@ const Nav = () => {
       disableSidenav()
     } else {
       const background = document.getElementsByClassName('background')[0]
-      background.style.marginLeft = '200px'
+      background.style.marginLeft = '190px'
       setShowNav(true)
       enableSidenav(false)
     }
@@ -83,7 +84,13 @@ const Nav = () => {
               style={{ columnGap: '10px' }}
               className="link-cancel-default flex-box align-items center cursor=pointer"
             >
-              <SpinningBtc width={25} height={25} centered={false} />
+              <PermaLoopAnimation
+                width={25}
+                height={25}
+                centered={false}
+                speed={0.5}
+                animJSON={btcJSON}
+              />
               <h2
                 style={{
                   fontWeight: 800,

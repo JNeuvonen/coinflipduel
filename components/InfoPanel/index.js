@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useMemo } from 'react'
 import {
   fetchEthPrice,
   formatBetsize,
@@ -7,10 +7,13 @@ import {
 import { useInterval } from '../../utils/hooks'
 import * as CONSTANTS from '../../utils/constants/index'
 import { ArrowRight, EthereumIcon } from '../../utils/icons'
+import { getDuelInfo } from '../../utils/functions/general'
 
 const InfoPanel = (props) => {
   const [ethPrice, setEthPrice] = useState(null)
   const [lastEthPrice, setLastEthPrice] = useState(null)
+  const [roundCount, setRoundCount] = useState(0)
+  const [totalEthWagered, setTotalEthWagered] = useState(0)
 
   useEffect(() => {
     const asyncHelper = async () => {
@@ -18,9 +21,12 @@ const InfoPanel = (props) => {
       setEthPrice(Number(fetchedEthPrice.data.price).toFixed(2))
       setLastEthPrice(Number(fetchedEthPrice.data.price).toFixed(2))
     }
-
-    asyncHelper()
   }, [])
+
+  useMemo(() => {
+    setTotalEthWagered(getDuelInfo(props.contractData))
+    setRoundCount(props.contractData.length)
+  }, [props.contractData])
 
   const fetchPrice = async () => {
     setLastEthPrice(ethPrice)
@@ -33,13 +39,11 @@ const InfoPanel = (props) => {
   return (
     <div
       style={{
-        fontSize: 17,
+        fontSize: 15,
         rowGap: '10px',
         columnGap: '20px',
-        padding: '10px',
-        borderRadius: '10px',
       }}
-      className="flex-box fontWeight500 flex-wrap align-items-center default-shadow"
+      className="flex-box fontWeight500 flex-wrap align-items-center"
     >
       <div className="flex-box align-items-center">
         <EthereumIcon width={20} height={20} />
@@ -55,10 +59,8 @@ const InfoPanel = (props) => {
           </span>
         </span>
       </div>
-      <div className="">Rounds Played: {props.contractData.coinFlips}</div>
-      <div>
-        Money Wagered: {formatBetsize(props.contractData.moneyExchanged)}
-      </div>
+      <div className="">Rounds Played: {roundCount}</div>
+      <div>Money Wagered: {formatBetsize(totalEthWagered)}</div>
     </div>
   )
 }

@@ -58,3 +58,13 @@ export const sortOpenTables = (contracts, sort, reverse) => {
 export const copyToClipBoard = (text) => {
   navigator.clipboard.writeText(text)
 }
+
+export const getDuelInfo = (data) => {
+  let ret = 0
+
+  data.forEach((item) => {
+    ret += Number(item[2])
+  })
+  console.log(ret)
+  return ret
+}

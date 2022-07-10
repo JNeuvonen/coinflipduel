@@ -33,7 +33,6 @@ const MyApp = ({ Component, pageProps }) => {
           coinFlipsHelper.push(coinflipDuelHistory[0])
         }
       }
-
       setCoinflips(coinFlipsHelper[0])
       setCoinflipHistories(coinFlipDuelContractsHelper)
 
