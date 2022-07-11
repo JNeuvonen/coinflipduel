@@ -9,6 +9,8 @@ import coinflipduel from '../ethereum/coinflipduel'
 import App from 'next/app'
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import { ethers } from 'ethers'
+import { NETWORK } from '../utils/constants'
 const MyApp = ({ Component, pageProps }) => {
   const {
     updateAccount,
@@ -18,6 +20,25 @@ const MyApp = ({ Component, pageProps }) => {
   } = Updaters()
   const [coinFlips, setCoinflips] = useState([])
   const [coinFlipDuelContracts, setCoinflipHistories] = useState([])
+  const [ethBalance, setEthBalance] = useState(null)
+  const account = useSelector((state) => state.account)
+
+  useEffect(() => {
+    if (account) {
+      if (account.length > 0) {
+        const provider = ethers.getDefaultProvider(NETWORK)
+        provider.on('block', () => {
+          provider.getBalance(account[0]).then((balance) => {
+            const balanceInEth = ethers.utils.formatEther(balance)
+
+            if (ethBalance === null) {
+              setEthBalance(Number(balanceInEth))
+            }
+          })
+        })
+      }
+    }
+  }, [account])
   useEffect(() => {
     const asyncHelper = async () => {
       const coinflipDuelAddresses = await factory.methods
@@ -25,6 +46,7 @@ const MyApp = ({ Component, pageProps }) => {
         .call()
       const coinFlipDuelContractsHelper = []
       const coinFlipsHelper = []
+      const invidualCoinflips = []
 
       for (let i = 0; i < coinflipDuelAddresses.length; i++) {
         const coinflipDuel = await coinflipduel(coinflipDuelAddresses[i])
@@ -33,6 +55,9 @@ const MyApp = ({ Component, pageProps }) => {
           .call()
 
         if (coinflipDuelHistory[0].length > 0) {
+          coinflipDuelHistory[0].forEach((item) => {
+            invidualCoinflips.push(item)
+          })
         }
         const dict = { contract: coinflipDuel, history: coinflipDuelHistory }
         coinFlipDuelContractsHelper.push(dict)
@@ -41,7 +66,7 @@ const MyApp = ({ Component, pageProps }) => {
           coinFlipsHelper.push(coinflipDuelHistory[0])
         }
       }
-      setCoinflips(coinFlipsHelper[0])
+      setCoinflips(invidualCoinflips)
       setCoinflipHistories(coinFlipDuelContractsHelper)
 
       let accounts = await web3.eth.getAccounts()

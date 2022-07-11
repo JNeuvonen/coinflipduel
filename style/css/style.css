@@ -212,7 +212,8 @@
 
 .background {
   background-color: var(--clr-background);
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 30px;
   z-index: 2; }
 
 .table h1 {
