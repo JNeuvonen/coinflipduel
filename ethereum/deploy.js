@@ -3,7 +3,7 @@ const Web3 = require('web3')
 const compiledFactory = require('./build/CoinflipDuelFactory.json')
 
 const provider = new HDWalletProvider(
-  'edge life level pulse garage glove exit forest vocal air adjust illegal',
+  process.env.MNENOMIC,
   // remember to change this to your own phrase!
   'https://rinkeby.infura.io/v3/dfbc43ef38b54878b7865bca83ebc173'
   // remember to change this to your own endpoint!

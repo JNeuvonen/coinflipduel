@@ -11,6 +11,7 @@ import '../style/css/style.css'
 import { NETWORK } from '../utils/constants'
 import { useMediaQuery } from '@mui/material'
 import Head from 'next/head'
+
 const MyApp = ({ Component, pageProps }) => {
   const {
     updateAccount,
