@@ -143,7 +143,7 @@
 .link-cta-button {
   padding: 5px;
   background-color: inherit;
-  border: 1px solid var(--clr-cta);
+  border: 2px solid var(--clr-cta);
   color: var(--clr-cta);
   border-radius: 10px;
   cursor: pointer; }
@@ -196,7 +196,7 @@
   border: 2px solid green;
   position: absolute;
   background-color: var(--clr-table);
-  z-index: 4;
+  z-index: 300;
   right: -300px;
   bottom: 30px;
   transition: right 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
@@ -220,6 +220,9 @@
   font-weight: 700;
   color: var(--clr-text);
   margin-bottom: 20px; }
+
+.table h3 {
+  color: var(--clr-text); }
 
 .table__cta {
   padding: 10px;

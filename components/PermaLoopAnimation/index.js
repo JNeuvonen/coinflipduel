@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import lottie from 'lottie-web/build/player/lottie_light'
 
-const SpinningBtc = ({ width, height, centered, speed, animJSON }) => {
+const PermaLoopAnimation = ({ width, height, centered, speed, animJSON }) => {
   const animationContainer = useRef(null)
   const anim = useRef(null)
 
@@ -28,4 +28,4 @@ const SpinningBtc = ({ width, height, centered, speed, animJSON }) => {
     ></div>
   )
 }
-export default SpinningBtc
+export default PermaLoopAnimation

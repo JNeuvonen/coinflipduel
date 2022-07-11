@@ -59,6 +59,27 @@ export const copyToClipBoard = (text) => {
   navigator.clipboard.writeText(text)
 }
 
+export const findTableByAddress = (contracts, address) => {
+  for (let i = 0; i < contracts.length; i++) {
+    if (address === contracts[i].contract['_address']) {
+      return contracts[i]
+    }
+  }
+  return null
+}
+
+export const getTableNameFromContract = (contract) => {
+  return contract.history[1]
+}
+
+export const getContractBalance = (contract) => {
+  return contract.history[5]
+}
+
+export const getMinstakeFromContract = (contract) => {
+  return contract.history[2]
+}
+
 export const getDuelInfo = (data) => {
   let ret = 0
 

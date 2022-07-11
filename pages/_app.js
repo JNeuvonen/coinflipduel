@@ -31,6 +31,9 @@ const MyApp = ({ Component, pageProps }) => {
         const coinflipDuelHistory = await coinflipDuel.methods
           .getSummary()
           .call()
+
+        if (coinflipDuelHistory[0].length > 0) {
+        }
         const dict = { contract: coinflipDuel, history: coinflipDuelHistory }
         coinFlipDuelContractsHelper.push(dict)
 

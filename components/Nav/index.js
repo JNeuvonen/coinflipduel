@@ -112,7 +112,7 @@ const Nav = () => {
         <GetLinkRender
           icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
           text="Create Table"
-          route={'/table'}
+          route={'/table/new'}
         />
       </nav>
     )
@@ -159,7 +159,7 @@ const Nav = () => {
         <GetLinkRender
           icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
           text="Create Table"
-          route={'/table'}
+          route={'/table/new'}
         />
       </nav>
     </>
