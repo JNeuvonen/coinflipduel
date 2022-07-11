@@ -10,6 +10,7 @@ import Updaters from '../state/utils'
 import '../style/css/style.css'
 import { NETWORK } from '../utils/constants'
 import { useMediaQuery } from '@mui/material'
+import Head from 'next/head'
 const MyApp = ({ Component, pageProps }) => {
   const {
     updateAccount,
@@ -107,6 +108,14 @@ const MyApp = ({ Component, pageProps }) => {
 
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, maximum-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Coinflip.app" />
+        <title>Coinflip.app</title>
+      </Head>
+
       <Provider store={store}>
         <Layout coinFlips={coinFlips}>
           <Component
