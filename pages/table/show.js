@@ -124,7 +124,7 @@ const TableShow = (props) => {
     <div className="table">
       <div
         className="table__form flex-box flex-wrap"
-        style={{ columnGap: '10px' }}
+        style={{ columnGap: '10px', rowGap: '10px' }}
       >
         <div
           className="flex-box space-between flex-wrap"
@@ -178,7 +178,7 @@ const TableShow = (props) => {
             )}
           </div>
         </div>
-        <h3 style={{ marginTop: 15, fontSize: 20 }}>Recent Coinflips</h3>
+        <h3 style={{ fontSize: 20 }}>Recent Coinflips</h3>
       </div>
     </div>
   )

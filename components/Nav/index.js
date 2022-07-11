@@ -127,7 +127,6 @@ const Nav = () => {
           onClick={enableNav}
         >
           <MenuIcon width={22} height={22} />
-          <span>Menu</span>
         </div>
       </button>
       <nav className="side-nav">

@@ -1,16 +1,15 @@
+import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import { Provider, useSelector } from 'react-redux'
+import Layout from '../components/Layout'
+import coinflipduel from '../ethereum/coinflipduel'
+import factory from '../ethereum/factory'
 import web3 from '../ethereum/web3'
 import { store, wrapper } from '../state/store.js'
 import Updaters from '../state/utils'
 import '../style/css/style.css'
-import factory from '../ethereum/factory'
-import coinflipduel from '../ethereum/coinflipduel'
-import App from 'next/app'
-import Head from 'next/head'
-import Layout from '../components/Layout'
-import { ethers } from 'ethers'
 import { NETWORK } from '../utils/constants'
+import { useMediaQuery } from '@mui/material'
 const MyApp = ({ Component, pageProps }) => {
   const {
     updateAccount,
@@ -21,8 +20,18 @@ const MyApp = ({ Component, pageProps }) => {
   const [coinFlips, setCoinflips] = useState([])
   const [coinFlipDuelContracts, setCoinflipHistories] = useState([])
   const account = useSelector((state) => state.account)
-  const [ignoreFirst, setIgnoreFirst] = useState(false)
   const infoMessage = useSelector((state) => state.infoMessage)
+  const mobile = useMediaQuery('(max-width:600px)')
+
+  useEffect(() => {
+    if (mobile) {
+      updateInfoMessage(
+        'This site has limited support for mobile devices since Web3 wallets are currently not supported for mobile phones currently.'
+      )
+      updateInfoMessageTimeout(60000)
+      updateInfoMessageType('failure')
+    }
+  }, [])
 
   useEffect(() => {
     if (account) {
