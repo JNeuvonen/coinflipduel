@@ -38,7 +38,7 @@ export const sortOpenTables = (contracts, sort, reverse) => {
       return compareHelper(a[1], b[1])
     }
 
-    if (sort === 'Wager') {
+    if (sort === 'Waged') {
       return compareHelper(a[2], b[2])
     }
 
@@ -73,11 +73,25 @@ export const getTableNameFromContract = (contract) => {
 }
 
 export const getContractBalance = (contract) => {
-  return contract.history[5]
+  return Number(contract.history[5])
 }
 
 export const getMinstakeFromContract = (contract) => {
   return contract.history[2]
+}
+
+export const getNumberOfPlayers = (contract) => {
+  if (contract.history[3] === '0x0000000000000000000000000000000000000000') {
+    return 0
+  }
+  return 1
+}
+
+export const getPlayer1FromContract = (contract) => {
+  if (contract.history[3] === '0x0000000000000000000000000000000000000000') {
+    return 'none'
+  }
+  return contract.history[3]
 }
 
 export const getDuelInfo = (data) => {

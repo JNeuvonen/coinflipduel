@@ -13,7 +13,11 @@ const reducer = (state, action) => {
       return { ...state, infoMessageType: action.payload }
 
     case 'updateInfoMessageTimeout':
-      return { ...state, infoMessageTimeout: action.payload }
+      return {
+        ...state,
+        infoMessageTimeout: action.payload,
+        infoMessageTs: Date.now() - 1000,
+      }
 
     default: {
       return {
@@ -22,6 +26,7 @@ const reducer = (state, action) => {
         infoMessage: null,
         infoMessageType: null,
         infoMessageTimeout: null,
+        infoMessageTs: null,
       }
     }
   }

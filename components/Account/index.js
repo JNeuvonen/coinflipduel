@@ -9,6 +9,7 @@ import {
 } from '../../utils/functions/ethereumUtils'
 import { copyToClipBoard } from '../../utils/functions/general'
 import { CancelIcon, CopyIcon, EthereumIcon, LinkIcon } from '../../utils/icons'
+import ViewOnEtherScan from '../ViewOnEtherscan'
 const Account = (props) => {
   const account = useSelector((state) => state.account)
   const [balance, setBalance] = useState(null)
@@ -49,35 +50,8 @@ const Account = (props) => {
         >
           <h3>Connected with Metamask</h3>
         </div>
-        <div
-          className="flex-box flex-wrap align-items-center width100 space-between"
-          style={{ columnGap: '10px', flexBasis: '100%' }}
-        >
-          <div onClick={clipboardOnClick} className="">
-            <CopyIcon width={20} height={20} />
-            <span style={{ marginLeft: 5 }}>{formatAddress(account[0])}</span>
-          </div>
 
-          <a
-            className="flex-box flex-wrap align-items-center cursor-pointer link-cancel-default"
-            href={`https://rinkeby.etherscan.io/address/${account[0]}`}
-            target="_blank"
-          >
-            <LinkIcon width={20} height={20} />
-            <p
-              style={{
-                fontWeight: 300,
-                marginLeft: 5,
-                fontSize: 17,
-                textDecoration: 'underline',
-              }}
-              className="cursor-pointer"
-            >
-              View on etherscan
-            </p>
-          </a>
-        </div>
-
+        <ViewOnEtherScan account={account[0]} />
         <div className="">
           <div
             className="flex-box flex-wrap align-items-center"

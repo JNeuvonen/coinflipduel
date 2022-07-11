@@ -19,7 +19,7 @@ const Layout = (props) => {
   const [metamaskClick, setMetamaskClick] = useState(false)
   const infoMessageType = useSelector((state) => state.infoMessageType)
   const infoMessageTimeout = useSelector((state) => state.infoMessageTimeout)
-
+  const infoMessageTs = useSelector((state) => state.infoMessageTs)
   const errorMessage = useSelector((state) => state.errorMessage)
   const infoMessage = useSelector((state) => state.infoMessage)
   const [spinner, setSpinner] = useState(true)
@@ -29,11 +29,12 @@ const Layout = (props) => {
     setShowError(false)
     updateErrorMessage(null)
   }
-
   const infoMessageCancel = () => {
-    disableInfoMessage()
-    updateInfoMessage(null)
-    updateInfoMessageType(null)
+    if (Date.now() - infoMessageTs > infoMessageTimeout) {
+      disableInfoMessage()
+      updateInfoMessage(null)
+      updateInfoMessageType(null)
+    }
   }
 
   useEffect(() => {
@@ -66,7 +67,6 @@ const Layout = (props) => {
       infoMessageCancel()
     }
   }, [infoMessage])
-  console.log(infoMessageType)
   return (
     <div className="background">
       <Head>

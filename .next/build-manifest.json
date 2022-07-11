@@ -30,6 +30,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/table/new": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/table/new.js"
+    ],
     "/table/show": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

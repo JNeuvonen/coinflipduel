@@ -11,6 +11,7 @@ const initalState = {
   infoMessage: null,
   infoMessageType: null,
   infoMessageTimeout: null,
+  infoMessageTs: null,
 }
 
 // middleware

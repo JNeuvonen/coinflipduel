@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux'
 import factory from '../ethereum/factory'
 import Updaters from '../state/utils'
 import { updateInfoMessageType } from '../state/action-creators'
+import NoMetamask from '../components/NoMetamask'
 const Table = (props) => {
   const [tableName, setTableName] = useState('')
   const [tableNameError, setTableNameError] = useState('')
@@ -147,23 +148,7 @@ const Table = (props) => {
   }
 
   if (!metamask) {
-    return (
-      <div className="table">
-        <div className="table__form">
-          <h1 style={{ textAlign: 'center' }}>
-            User needs to have{' '}
-            <a
-              href="https://metamask.io/"
-              className="link-cancel-default"
-              style={{ textDecoration: 'underline' }}
-            >
-              Metamask
-            </a>{' '}
-            installed to create a new table
-          </h1>
-        </div>
-      </div>
-    )
+    return <NoMetamask />
   }
 
   return (

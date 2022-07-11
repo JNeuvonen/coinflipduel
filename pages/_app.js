@@ -35,10 +35,9 @@ const MyApp = ({ Component, pageProps }) => {
             if (!balance.eq(lastBalance)) {
               lastBalance = balance
               // convert a currency unit from wei to ether
-
               if (ignoreFirst) {
                 if (infoMessage === null) {
-                  updateInfoMessageTimeout(5000)
+                  updateInfoMessageTimeout(60000)
                   updateInfoMessage('Balance changed!')
                   updateInfoMessageType('success')
                 }
