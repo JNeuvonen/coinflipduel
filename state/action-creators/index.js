@@ -42,3 +42,12 @@ export const updateInfoMessageTimeout = (data) => {
     })
   }
 }
+
+export const updateLoadingSpinner = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'updateLoadingSpinner',
+      payload: data,
+    })
+  }
+}

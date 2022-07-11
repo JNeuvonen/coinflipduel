@@ -22,9 +22,13 @@ const Layout = (props) => {
   const infoMessageTs = useSelector((state) => state.infoMessageTs)
   const errorMessage = useSelector((state) => state.errorMessage)
   const infoMessage = useSelector((state) => state.infoMessage)
-  const [spinner, setSpinner] = useState(true)
-  const { updateErrorMessage, updateInfoMessage, updateInfoMessageType } =
-    Updaters()
+  const spinner = useSelector((state) => state.loadingSpinner)
+  const {
+    updateErrorMessage,
+    updateInfoMessage,
+    updateInfoMessageType,
+    updateLoadingSpinner,
+  } = Updaters()
   const errorCancel = () => {
     setShowError(false)
     updateErrorMessage(null)
@@ -44,7 +48,7 @@ const Layout = (props) => {
     })
 
     setTimeout(() => {
-      setSpinner(false)
+      updateLoadingSpinner(false)
     }, [2000])
   }, [])
 

@@ -18,7 +18,7 @@ const PermaLoopAnimation = ({ width, height, centered, speed, animJSON }) => {
 
       return () => anim.current?.destroy()
     }
-  }, [])
+  }, [animJSON])
 
   return (
     <div

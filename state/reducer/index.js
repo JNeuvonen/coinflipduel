@@ -12,6 +12,9 @@ const reducer = (state, action) => {
     case 'updateInfoMessageType':
       return { ...state, infoMessageType: action.payload }
 
+    case 'updateLoadingSpinner':
+      return { ...state, loadingSpinner: action.payload }
+
     case 'updateInfoMessageTimeout':
       return {
         ...state,
@@ -27,6 +30,7 @@ const reducer = (state, action) => {
         infoMessageType: null,
         infoMessageTimeout: null,
         infoMessageTs: null,
+        loadingSpinner: true,
       }
     }
   }

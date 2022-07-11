@@ -10,6 +10,7 @@ const Updaters = () => {
     updateInfoMessage,
     updateInfoMessageType,
     updateInfoMessageTimeout,
+    updateLoadingSpinner,
   } = bindActionCreators(actionCreators, dispatch)
   return {
     updateAccount,
@@ -17,6 +18,7 @@ const Updaters = () => {
     updateInfoMessage,
     updateInfoMessageType,
     updateInfoMessageTimeout,
+    updateLoadingSpinner,
   }
 }
 

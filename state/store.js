@@ -12,6 +12,7 @@ const initalState = {
   infoMessageType: null,
   infoMessageTimeout: null,
   infoMessageTs: null,
+  loadingSpinner: true,
 }
 
 // middleware

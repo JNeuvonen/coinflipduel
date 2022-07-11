@@ -29,8 +29,13 @@ const TableShow = (props) => {
   const [contract, setContract] = useState(null)
   const account = useSelector((state) => state.account)
   const [metamask, setMetamask] = useState(false)
-  const { updateInfoMessage, updateInfoMessageTimeout, updateInfoMessageType } =
-    Updaters()
+  const [loadingSpinner, setLoadingSpinner] = useState(false)
+  const {
+    updateInfoMessage,
+    updateInfoMessageTimeout,
+    updateInfoMessageType,
+    updateLoadingSpinner,
+  } = Updaters()
 
   useEffect(() => {
     if (
@@ -56,12 +61,13 @@ const TableShow = (props) => {
     if (contract) {
       try {
         const staked = await contract.methods.player1Bet().call()
+        setLoadingSpinner(true)
 
         const tx = await contract.methods.enterContract().send({
           from: account[0],
           value: Number(getMinstakeFromContract(table)),
         })
-
+        setLoadingSpinner(false)
         updateInfoMessageTimeout(10000)
         updateInfoMessageType('success')
         updateInfoMessage(
@@ -94,9 +100,21 @@ const TableShow = (props) => {
           </div>
         )
       } catch (err) {
-        updateInfoMessage(err.message)
-        updateInfoMessageTimeout(10000)
-        updateInfoMessageType('failure')
+        setLoadingSpinner(false)
+        if (
+          err.message ===
+          'No "from" address specified in neither the given options, nor the default options.'
+        ) {
+          updateInfoMessage('Please connect your Metamask account.')
+          updateInfoMessageTimeout(10000)
+          updateInfoMessageType('failure')
+          updateLoadingSpinner(false)
+        } else {
+          updateInfoMessage(err.message)
+          updateInfoMessageTimeout(10000)
+          updateInfoMessageType('failure')
+          updateLoadingSpinner(false)
+        }
       }
     }
   }
@@ -120,6 +138,8 @@ const TableShow = (props) => {
     return <LoadingSpinner />
   }
 
+  console.log(loadingSpinner)
+
   return (
     <div className="table">
       <div
@@ -137,21 +157,22 @@ const TableShow = (props) => {
             </h1>
           </div>
           <div className="">
-            {
-              <div
-                className="flex-box align-items-center link-cta-button"
-                style={{ columnGap: '5px' }}
-                onClick={onClickHandler}
-              >
-                <PermaLoopAnimation
-                  animJSON={fireJSON}
-                  width={35}
-                  height={35}
-                  speed={1}
-                />
-                <h3 style={{ color: C.CTA, fontSize: 22 }}>Ready for action</h3>
-              </div>
-            }
+            <button
+              className="flex-box align-items-center link-cta-button"
+              style={{ columnGap: '5px' }}
+              onClick={onClickHandler}
+            >
+              <PermaLoopAnimation
+                animJSON={loadingSpinner ? waitingJSON : fireJSON}
+                width={35}
+                height={35}
+                speed={1}
+              />
+
+              <h3 style={{ color: C.CTA, fontSize: 22 }}>
+                {loadingSpinner ? 'Initiating' : 'Ready for action'}
+              </h3>
+            </button>
           </div>
         </div>
         <div
@@ -164,6 +185,7 @@ const TableShow = (props) => {
           <div className="">
             {getNumberOfPlayers(table) === 1 ? (
               <div style={{ padding: '10px', fontSize: 16, fontWeight: '700' }}>
+                <h3 style={{ color: 'black' }}>Player 1</h3>
                 <ViewOnEtherScan
                   account={getPlayer1FromContract(table)}
                   onlyAddress={true}
