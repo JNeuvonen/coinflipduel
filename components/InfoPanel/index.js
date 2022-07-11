@@ -60,7 +60,7 @@ const InfoPanel = (props) => {
         </span>
       </div>
       <div className="">Rounds Played: {roundCount}</div>
-      <div>Money Wagered: {formatBetsize(totalEthWagered)}</div>
+      <div>Money Wagered: {formatBetsize(totalEthWagered, 2)}</div>
     </div>
   )
 }

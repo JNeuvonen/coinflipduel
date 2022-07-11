@@ -21,6 +21,9 @@ export const formatBetsize = (wei, decimals) => {
   }
 
   if (wei < Math.pow(10, 16)) {
+    if (decimals) {
+      return String((wei / Math.pow(10, 9)).toFixed(decimals)) + ' Gwei'
+    }
     return String(wei / Math.pow(10, 9)) + ' Gwei'
   }
 
