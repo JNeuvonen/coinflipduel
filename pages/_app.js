@@ -20,19 +20,31 @@ const MyApp = ({ Component, pageProps }) => {
   } = Updaters()
   const [coinFlips, setCoinflips] = useState([])
   const [coinFlipDuelContracts, setCoinflipHistories] = useState([])
-  const [ethBalance, setEthBalance] = useState(null)
   const account = useSelector((state) => state.account)
+  const [ignoreFirst, setIgnoreFirst] = useState(false)
+  const infoMessage = useSelector((state) => state.infoMessage)
 
   useEffect(() => {
     if (account) {
       if (account.length > 0) {
         const provider = ethers.getDefaultProvider(NETWORK)
+        let lastBalance = ethers.constants.Zero
+        let ignoreFirst = false
         provider.on('block', () => {
           provider.getBalance(account[0]).then((balance) => {
-            const balanceInEth = ethers.utils.formatEther(balance)
+            if (!balance.eq(lastBalance)) {
+              lastBalance = balance
+              // convert a currency unit from wei to ether
 
-            if (ethBalance === null) {
-              setEthBalance(Number(balanceInEth))
+              if (ignoreFirst) {
+                if (infoMessage === null) {
+                  updateInfoMessageTimeout(5000)
+                  updateInfoMessage('Balance changed!')
+                  updateInfoMessageType('success')
+                }
+              } else {
+                ignoreFirst = true
+              }
             }
           })
         })
