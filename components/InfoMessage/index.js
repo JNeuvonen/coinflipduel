@@ -5,6 +5,7 @@ const InfoMessage = (props) => {
   useEffect(() => {
     changeInfoMessageColor(props.type)
   }, [props])
+
   return (
     <div className="success">
       <ReturnSuccessMessageHtml content={props.text} type={props.type} />

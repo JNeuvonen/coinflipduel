@@ -10,7 +10,12 @@ import App from 'next/app'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 const MyApp = ({ Component, pageProps }) => {
-  const { updateAccount } = Updaters()
+  const {
+    updateAccount,
+    updateInfoMessage,
+    updateInfoMessageTimeout,
+    updateInfoMessageType,
+  } = Updaters()
   const [coinFlips, setCoinflips] = useState([])
   const [coinFlipDuelContracts, setCoinflipHistories] = useState([])
   useEffect(() => {
@@ -44,6 +49,9 @@ const MyApp = ({ Component, pageProps }) => {
       window.ethereum.on('accountsChanged', async () => {
         let accounts = await web3.eth.getAccounts()
         updateAccount(accounts)
+        updateInfoMessage('Changed account')
+        updateInfoMessageTimeout(2500)
+        updateInfoMessageType('success')
       })
     }
     asyncHelper()

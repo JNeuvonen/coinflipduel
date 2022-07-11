@@ -4,7 +4,13 @@ import {
   tableNameAlreadyExists,
   upperCase,
 } from '../utils/functions/general'
-import { ChevronDown, DuelIcon, InfoIcon, LinkIcon } from '../utils/icons'
+import {
+  ChevronDown,
+  DuelIcon,
+  InfoIcon,
+  LinkIcon,
+  MetamaskIcon,
+} from '../utils/icons'
 import { Tooltip } from '@mui/material'
 import { formatBetsize } from '../utils/functions/ethereumUtils'
 import { useSelector } from 'react-redux'
@@ -17,14 +23,25 @@ const Table = (props) => {
   const [minimumStake, setMinimumStake] = useState('')
   const [minimumStakeError, setMinimumStakeError] = useState('')
   const [dropDownValue, setDropDownValue] = useState('ETH')
+  const [metamask, setMetamask] = useState(false)
   const { updateInfoMessage, updateInfoMessageTimeout } = Updaters()
   const account = useSelector((state) => state.account)
+
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.ethereum !== 'undefined'
+    ) {
+      setMetamask(true)
+    }
+  }, [])
 
   useEffect(() => {
     const nameAlreadyExistsError = tableNameAlreadyExists(
       props.coinFlipDuelContracts,
       tableName
     )
+
     let lengthError = tableName.length < 5
     let numberError = containsNumber(tableName)
     let errorName = false
@@ -128,6 +145,27 @@ const Table = (props) => {
       updateInfoMessageType('failure')
     }
   }
+
+  if (!metamask) {
+    return (
+      <div className="table">
+        <div className="table__form">
+          <h1 style={{ textAlign: 'center' }}>
+            User needs to have{' '}
+            <a
+              href="https://metamask.io/"
+              className="link-cancel-default"
+              style={{ textDecoration: 'underline' }}
+            >
+              Metamask
+            </a>{' '}
+            installed to create a new table
+          </h1>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="table">
       <div className="table__form">

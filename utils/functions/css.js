@@ -58,8 +58,9 @@ export const disableBlur2 = () => {
 
 export const changeInfoMessageColor = (type) => {
   const success = document.getElementsByClassName('success')[0]
-  console.log(type)
+
   if (success) {
+    success.style.transition = '0s'
     if (type === 'success') {
       success.style.border = '2px solid green'
       success.style.backgroundColor = 'white'
@@ -69,5 +70,7 @@ export const changeInfoMessageColor = (type) => {
       success.style.backgroundColor = '#e66074'
       success.style.color = 'white'
     }
+
+    success.style.transition = '1s cubic-bezier(0.075, 0.82, 0.165, 1)'
   }
 }
