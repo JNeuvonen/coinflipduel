@@ -7,6 +7,7 @@ import {
   getContractData,
 } from '../utils/functions/ethereumUtils'
 import { sortOpenTables } from '../utils/functions/general'
+import { Link } from '../routes'
 
 const Index = (props) => {
   const [contractData, setContractData] = useState(
@@ -43,6 +44,15 @@ const Index = (props) => {
   }, [])
 
   const renderOpenTables = () => {
+    const renderTd = (content, contract) => {
+      return (
+        <Link route={`/table/${contract.contract.options.address}`}>
+          <td align="center" className="fontWeight500">
+            <a className="link-cancel-default">{content}</a>
+          </td>
+        </Link>
+      )
+    }
     const render = openTableList.map((contract, i) => {
       const player1 =
         contract.history[3] === '0x0000000000000000000000000000000000000000'
@@ -50,39 +60,14 @@ const Index = (props) => {
           : true
       return (
         <tr key={i} className={player1 ? 'tr-activated' : null}>
-          {!bp1000 && (
-            <td align="center" className="fontWeight500">
-              {i + 1}
-            </td>
+          {!bp1000 && renderTd(i + 1, contract)}
+          {!bp500 && renderTd(contract.history[1], contract)}
+          {renderTd(
+            player1 ? formatBetsize(contract.history[5]) : '0',
+            contract
           )}
-          {!bp500 && (
-            <td
-              align="center"
-              className="fontWeight500"
-              style={{ fontWeight: 700, textDecoration: 'underline' }}
-            >
-              {contract.history[1]}
-            </td>
-          )}
-          <td align="center" className="fontWeight500">
-            {player1 ? formatBetsize(contract.history[5]) : '0'}
-          </td>
-          <td align="center" className="fontWeight500">
-            {formatBetsize(contract.history[2], false)}
-          </td>
-          <td
-            align="center"
-            className="fontWeight500"
-            style={{ fontWeight: 700, textDecoration: 'underline' }}
-          >
-            <a
-              href={`https://rinkeby.etherscan.io/address/${contract.contract.options.address}`}
-              target="_blank"
-              className="link-cancel-default"
-            >
-              {formatAddress(contract.contract.options.address)}
-            </a>
-          </td>
+          {renderTd(formatBetsize(contract.history[2], false), contract)}
+          {renderTd(formatAddress(contract.contract.options.address), contract)}
         </tr>
       )
     })
