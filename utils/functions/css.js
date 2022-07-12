@@ -40,13 +40,10 @@ export const disableSidenav = (delay, bp, manualClick) => {
   }
 
   if (manualClick) {
-    if (bp) {
-      console.log(bp)
-      nav.style.transition = '0s'
-      nav.style.transition = '1s cubic-bezier(0.66, 0.89, 0.23, 1.01)'
-      nav.style.width = '0px'
-      nav.style.padding = '0px'
-    }
+    nav.style.transition = '0s'
+    nav.style.transition = '1s cubic-bezier(0.66, 0.89, 0.23, 1.01)'
+    nav.style.width = '0px'
+    nav.style.padding = '0px'
   }
 }
 
