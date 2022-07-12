@@ -11,6 +11,7 @@ import '../style/css/style.css'
 import { NETWORK } from '../utils/constants'
 import { useMediaQuery } from '@mui/material'
 import Head from 'next/head'
+import Web3 from 'web3'
 
 const MyApp = ({ Component, pageProps }) => {
   const {
@@ -62,6 +63,37 @@ const MyApp = ({ Component, pageProps }) => {
       }
     }
   }, [account])
+
+  useEffect(() => {
+    const asyncHelper = async () => {
+      const network = await web3.eth.net.getNetworkType()
+      if (network !== 'rinkeby') {
+        try {
+          try {
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: Web3.utils.toHex(4) }],
+            })
+          } catch (err) {
+            if (err.message === 'User rejected the request.') {
+              updateInfoMessageTimeout(60000)
+              updateInfoMessage(
+                'This website has limited functionality without the correct network'
+              )
+              updateInfoMessageType('failure')
+            } else {
+              updateInfoMessageTimeout(60000)
+              updateInfoMessage(err.message)
+              updateInfoMessageType('failure')
+            }
+          }
+        } catch (err) {}
+      } else {
+        setNetwork('rinkeby')
+      }
+    }
+    asyncHelper()
+  }, [])
   useEffect(() => {
     const asyncHelper = async () => {
       const coinflipDuelAddresses = await factory.methods
@@ -135,11 +167,13 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
 
       <Provider store={store}>
-        <Layout coinFlips={coinFlips}>
+        <Layout coinFlips={coinFlips} setNetwork={setNetwork} network={network}>
           <Component
             {...pageProps}
             coinFlipDuelContracts={coinFlipDuelContracts}
             coinFlips={coinFlips}
+            network={network}
+            setNetwork={setNetwork}
           />
         </Layout>
       </Provider>

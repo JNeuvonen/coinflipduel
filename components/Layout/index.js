@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { updateInfoMessageType } from '../../state/action-creators'
+import {
+  updateInfoMessageTimeout,
+  updateInfoMessageType,
+} from '../../state/action-creators'
 import Updaters from '../../state/utils'
 import {
   disableBlur,
@@ -27,6 +30,7 @@ const Layout = (props) => {
     updateErrorMessage,
     updateInfoMessage,
     updateInfoMessageType,
+    updateInfoMessageTimeout,
     updateLoadingSpinner,
   } = Updaters()
   const errorCancel = () => {
@@ -34,11 +38,10 @@ const Layout = (props) => {
     updateErrorMessage(null)
   }
   const infoMessageCancel = () => {
-    if (Date.now() - infoMessageTs > infoMessageTimeout) {
-      disableInfoMessage()
-      updateInfoMessage(null)
-      updateInfoMessageType(null)
-    }
+    disableInfoMessage()
+    updateInfoMessage(null)
+    updateInfoMessageType(null)
+    updateInfoMessageTimeout(null)
   }
 
   useEffect(() => {
@@ -87,7 +90,11 @@ const Layout = (props) => {
           />
         )}
 
-        <MetamaskConnect setMetamaskOnClick={setMetamaskClick} />
+        <MetamaskConnect
+          setMetamaskOnClick={setMetamaskClick}
+          setNetwork={props.setNetwork}
+          network={props.network}
+        />
 
         <InfoMessage text={infoMessage} type={infoMessageType}></InfoMessage>
 
