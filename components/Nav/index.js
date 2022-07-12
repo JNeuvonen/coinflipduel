@@ -24,7 +24,7 @@ const Nav = () => {
 
   useEffect(() => {
     document.getElementById('blur-2').addEventListener('click', (e) => {
-      disableSidenav(true, bp850)
+      disableSidenav(true, bp850, true)
       disableBlur2()
     })
   }, [])
@@ -105,6 +105,7 @@ const Nav = () => {
       background.style.marginLeft = '190px'
       setShowNav(true)
       enableSidenav(false)
+      disableBlur2()
     }
   }, [bp850])
 
