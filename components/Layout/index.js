@@ -73,14 +73,6 @@ const Layout = (props) => {
   }, [infoMessage])
   return (
     <div className="background">
-      <Head>
-        <link rel="shortcut icon" href="../../public/favicon.ico" />
-        <meta name="viewport" content="width=device-width, maximum-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="Coinflip.app" />
-        <title>Coinflip.app</title>
-      </Head>
-
       {spinner && <LoadingSpinner />}
 
       <div className="layout">

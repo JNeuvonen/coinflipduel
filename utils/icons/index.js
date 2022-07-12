@@ -353,3 +353,17 @@ export const CreateIcon = ({ width, height, fill }) => {
     </svg>
   )
 }
+
+export const SourceCodeIcon = ({ width, height, fill }) => {
+  return (
+    <svg
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 64 64"
+      width={width}
+      height={height}
+    >
+      <path d="M0 34.89V29.11l19.984-10.128v6.008L7.967 32.026l12.016 6.983v6.008L0 34.89zM44.016 45.018v-6.008l12.016-6.983-12.016-7.036v-6.008L64 29.11v5.779L44.016 45.018zM24 51l10.398-38H40l-9 38H24z" />
+    </svg>
+  )
+}

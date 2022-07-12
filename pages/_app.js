@@ -95,22 +95,25 @@ const MyApp = ({ Component, pageProps }) => {
       updateAccount(accounts)
     }
 
-    if (window.ethereum) {
-      window.ethereum.on('accountsChanged', async () => {
-        let accounts = await web3.eth.getAccounts()
-        updateAccount(accounts)
-        updateInfoMessage('Changed account')
-        updateInfoMessageTimeout(2500)
-        updateInfoMessageType('success')
-      })
+    if (window) {
+      if (window.ethereum) {
+        window.ethereum.on('accountsChanged', async () => {
+          let accounts = await web3.eth.getAccounts()
+          updateAccount(accounts)
+          updateInfoMessage('Changed account')
+          updateInfoMessageTimeout(2500)
+          updateInfoMessageType('success')
+        })
+      }
     }
+
     asyncHelper()
   }, [])
 
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta name="viewport" content="width=device-width, maximum-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="Coinflip.app" />

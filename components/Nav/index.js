@@ -8,7 +8,13 @@ import {
   enableBlur2,
   enableSidenav,
 } from '../../utils/functions/css'
-import { DuelIcon, MenuIcon, OverviewIcon, SiteIcon } from '../../utils/icons'
+import {
+  DuelIcon,
+  MenuIcon,
+  OverviewIcon,
+  SiteIcon,
+  SourceCodeIcon,
+} from '../../utils/icons'
 import PermaLoopAnimation from '../PermaLoopAnimation'
 import btcJSON from '../../assets/JSON/icons8-bitcoin (1).json'
 const Nav = () => {
@@ -78,42 +84,62 @@ const Nav = () => {
   if (!bp850) {
     return (
       <nav className="side-nav">
-        <div className="" style={{ columnGap: '10px', marginBottom: 40 }}>
-          <Link route="/">
-            <a
-              style={{ columnGap: '10px' }}
-              className="link-cancel-default flex-box align-items center cursor=pointer"
-            >
-              <PermaLoopAnimation
-                width={25}
-                height={25}
-                centered={false}
-                speed={0.5}
-                animJSON={btcJSON}
-              />
-              <h2
-                style={{
-                  fontWeight: 800,
-                  fontFamily: 'Helvetica, sans-serif',
-                  color: 'white',
-                }}
+        <div
+          className="flex-box flex-direction-column space-between"
+          style={{ height: '100%' }}
+        >
+          <div className="" style={{ columnGap: '10px' }}>
+            <Link route="/">
+              <a
+                style={{ columnGap: '10px' }}
+                className="link-cancel-default flex-box align-items center cursor=pointer"
               >
-                Coinflip.app
-              </h2>
-            </a>
-          </Link>
-        </div>
-        <GetLinkRender
-          icon={<OverviewIcon widht={22} height={22} fill={'#a0a1a3'} />}
-          text={'Overview'}
-          route={'/'}
-        />
+                <PermaLoopAnimation
+                  width={25}
+                  height={25}
+                  centered={false}
+                  speed={0.5}
+                  animJSON={btcJSON}
+                />
+                <h2
+                  style={{
+                    fontWeight: 800,
+                    fontFamily: 'Helvetica, sans-serif',
+                    color: 'white',
+                  }}
+                >
+                  Coinflip.app
+                </h2>
+              </a>
+            </Link>
+            <div className="" style={{ marginTop: 50 }}>
+              <GetLinkRender
+                icon={<OverviewIcon widht={22} height={22} fill={'#a0a1a3'} />}
+                text={'Overview'}
+                route={'/'}
+              />
+            </div>
 
-        <GetLinkRender
-          icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
-          text="Create Table"
-          route={'/table/new'}
-        />
+            <GetLinkRender
+              icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
+              text="Create Table"
+              route={'/table/new'}
+            />
+          </div>
+
+          <div className="" style={{ marginBottom: 30 }}>
+            <GetLinkRender
+              icon={<SourceCodeIcon width={22} height={22} fill={'#a0a1a3'} />}
+              text={'FAQ'}
+              route={'/faq'}
+            />
+            <GetLinkRender
+              icon={<SourceCodeIcon width={22} height={22} fill={'#a0a1a3'} />}
+              text={'Contracts'}
+              route={'/contracts'}
+            />
+          </div>
+        </div>
       </nav>
     )
   }
@@ -129,37 +155,46 @@ const Nav = () => {
           <MenuIcon width={22} height={22} />
         </div>
       </button>
-      <nav className="side-nav">
-        <div className="" style={{ columnGap: '10px', marginBottom: 40 }}>
-          <Link route="/">
-            <a
-              style={{ columnGap: '10px' }}
-              className="link-cancel-default flex-box align-items center cursor=pointer"
-            >
-              <SiteIcon width={25} height={25} />
-              <h2
-                style={{
-                  fontWeight: 800,
-                  fontFamily: 'Helvetica, sans-serif',
-                  color: 'white',
-                }}
+      <nav className="side-nav flex-box space-between flex-direction-column">
+        <div className="">
+          <div className="" style={{ columnGap: '10px', marginBottom: 40 }}>
+            <Link route="/">
+              <a
+                style={{ columnGap: '10px' }}
+                className="link-cancel-default flex-box align-items center cursor=pointer"
               >
-                Coinflip.app
-              </h2>
-            </a>
-          </Link>
-        </div>
-        <GetLinkRender
-          icon={<OverviewIcon widht={22} height={22} fill={'#a0a1a3'} />}
-          text={'Overview'}
-          route={'/'}
-        />
+                <SiteIcon width={25} height={25} />
+                <h2
+                  style={{
+                    fontWeight: 800,
+                    fontFamily: 'Helvetica, sans-serif',
+                    color: 'white',
+                  }}
+                >
+                  Coinflip.app
+                </h2>
+              </a>
+            </Link>
+          </div>
+          <GetLinkRender
+            icon={<OverviewIcon widht={22} height={22} fill={'#a0a1a3'} />}
+            text={'Overview'}
+            route={'/'}
+          />
 
-        <GetLinkRender
-          icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
-          text="Create Table"
-          route={'/table/new'}
-        />
+          <GetLinkRender
+            icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
+            text="Create Table"
+            route={'/table/new'}
+          />
+        </div>
+        <div className="">
+          <GetLinkRender
+            icon={<SourceCodeIcon width={22} height={22} fill={'#a0a1a3'} />}
+            text={'Contracts'}
+            route={'/contracts'}
+          />
+        </div>
       </nav>
     </>
   )
