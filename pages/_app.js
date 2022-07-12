@@ -23,6 +23,7 @@ const MyApp = ({ Component, pageProps }) => {
   const [coinFlipDuelContracts, setCoinflipHistories] = useState([])
   const account = useSelector((state) => state.account)
   const infoMessage = useSelector((state) => state.infoMessage)
+  const [network, setNetwork] = useState(null)
   const mobile = useMediaQuery('(max-width:600px)')
 
   useEffect(() => {
@@ -104,11 +105,24 @@ const MyApp = ({ Component, pageProps }) => {
           updateInfoMessageTimeout(2500)
           updateInfoMessageType('success')
         })
+
+        window.ethereum.on('networkChanged', function (networkId) {
+          updateInfoMessage('Network changed')
+          updateInfoMessageTimeout(2500)
+          updateInfoMessageType('success')
+          const asyncHelper = async () => {
+            const network = await web3.eth.net.getNetworkType()
+            setNetwork(network)
+          }
+          asyncHelper()
+        })
       }
     }
 
-    asyncHelper()
-  }, [])
+    if (network === 'rinkeby') {
+      asyncHelper()
+    }
+  }, [network])
 
   return (
     <>
