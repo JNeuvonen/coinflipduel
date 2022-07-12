@@ -24,7 +24,7 @@ const Nav = () => {
 
   useEffect(() => {
     document.getElementById('blur-2').addEventListener('click', (e) => {
-      disableSidenav(true)
+      disableSidenav(true, bp850)
       disableBlur2()
     })
   }, [])
@@ -37,7 +37,7 @@ const Nav = () => {
 
   useMemo(() => {
     if (bp850) {
-      disableSidenav(true)
+      disableSidenav(true, bp850, true)
       disableBlur2()
     }
   }, [router])
@@ -67,12 +67,39 @@ const Nav = () => {
     )
   }
 
+  const BottomLinkRender = ({ text, route }) => {
+    const activatedStyles = router === route ? true : false
+    return (
+      <Link route={route}>
+        <div
+          style={{
+            marginTop: 15,
+            backgroundColor: activatedStyles ? '#313239' : null,
+          }}
+          className="nav-link"
+        >
+          <a
+            style={{ columnGap: '10px' }}
+            className="flex-box align-items-center link-cancel-default "
+          >
+            <span
+              style={{ color: activatedStyles ? 'white' : null }}
+              className="nav-link__btm-links"
+            >
+              {text}
+            </span>
+          </a>
+        </div>
+      </Link>
+    )
+  }
+
   useEffect(() => {
     if (bp850) {
       const background = document.getElementsByClassName('background')[0]
       background.style.marginLeft = '0px'
       setShowNav(false)
-      disableSidenav()
+      disableSidenav(true, bp850)
     } else {
       const background = document.getElementsByClassName('background')[0]
       background.style.marginLeft = '190px'
@@ -83,6 +110,74 @@ const Nav = () => {
 
   if (!bp850) {
     return (
+      <>
+        <nav className="side-nav">
+          <div
+            className="flex-box flex-direction-column space-between"
+            style={{ height: '100%' }}
+          >
+            <div className="" style={{ columnGap: '10px' }}>
+              <Link route="/">
+                <a
+                  style={{ columnGap: '10px' }}
+                  className="link-cancel-default flex-box align-items center cursor=pointer"
+                >
+                  <PermaLoopAnimation
+                    width={25}
+                    height={25}
+                    centered={false}
+                    speed={0.5}
+                    animJSON={btcJSON}
+                  />
+                  <h2
+                    style={{
+                      fontWeight: 800,
+                      fontFamily: 'Helvetica, sans-serif',
+                      color: 'white',
+                    }}
+                  >
+                    Coinflip.app
+                  </h2>
+                </a>
+              </Link>
+              <div className="" style={{ marginTop: 50 }}>
+                <GetLinkRender
+                  icon={
+                    <OverviewIcon widht={22} height={22} fill={'#a0a1a3'} />
+                  }
+                  text={'Overview'}
+                  route={'/'}
+                />
+              </div>
+
+              <GetLinkRender
+                icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
+                text="Create Table"
+                route={'/table/new'}
+              />
+            </div>
+
+            <div className="" style={{ marginBottom: 30 }}>
+              <BottomLinkRender text={'FAQ'} route={'/faq'} />
+              <BottomLinkRender text={'Contracts'} route={'/contracts'} />
+            </div>
+          </div>
+        </nav>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <button className="menu-button">
+        <div
+          className="flex-box align-items-center"
+          style={{ columnGap: '10px' }}
+          onClick={enableNav}
+        >
+          <MenuIcon width={22} height={22} />
+        </div>
+      </button>
       <nav className="side-nav">
         <div
           className="flex-box flex-direction-column space-between"
@@ -128,72 +223,9 @@ const Nav = () => {
           </div>
 
           <div className="" style={{ marginBottom: 30 }}>
-            <GetLinkRender
-              icon={<SourceCodeIcon width={22} height={22} fill={'#a0a1a3'} />}
-              text={'FAQ'}
-              route={'/faq'}
-            />
-            <GetLinkRender
-              icon={<SourceCodeIcon width={22} height={22} fill={'#a0a1a3'} />}
-              text={'Contracts'}
-              route={'/contracts'}
-            />
+            <BottomLinkRender text={'FAQ'} route={'/faq'} />
+            <BottomLinkRender text={'Contracts'} route={'/contracts'} />
           </div>
-        </div>
-      </nav>
-    )
-  }
-
-  return (
-    <>
-      <button className="menu-button">
-        <div
-          className="flex-box align-items-center"
-          style={{ columnGap: '10px' }}
-          onClick={enableNav}
-        >
-          <MenuIcon width={22} height={22} />
-        </div>
-      </button>
-      <nav className="side-nav flex-box space-between flex-direction-column">
-        <div className="">
-          <div className="" style={{ columnGap: '10px', marginBottom: 40 }}>
-            <Link route="/">
-              <a
-                style={{ columnGap: '10px' }}
-                className="link-cancel-default flex-box align-items center cursor=pointer"
-              >
-                <SiteIcon width={25} height={25} />
-                <h2
-                  style={{
-                    fontWeight: 800,
-                    fontFamily: 'Helvetica, sans-serif',
-                    color: 'white',
-                  }}
-                >
-                  Coinflip.app
-                </h2>
-              </a>
-            </Link>
-          </div>
-          <GetLinkRender
-            icon={<OverviewIcon widht={22} height={22} fill={'#a0a1a3'} />}
-            text={'Overview'}
-            route={'/'}
-          />
-
-          <GetLinkRender
-            icon={<DuelIcon widht={22} height={22} fill={'#a0a1a3'} />}
-            text="Create Table"
-            route={'/table/new'}
-          />
-        </div>
-        <div className="">
-          <GetLinkRender
-            icon={<SourceCodeIcon width={22} height={22} fill={'#a0a1a3'} />}
-            text={'Contracts'}
-            route={'/contracts'}
-          />
         </div>
       </nav>
     </>

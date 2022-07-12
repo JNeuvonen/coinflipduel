@@ -24,15 +24,27 @@ export const enableInfoMessage = () => {
   success.style.right = '30px'
 }
 
-export const disableSidenav = (delay) => {
+export const disableSidenav = (delay, bp, manualClick) => {
+  disableBlur2()
+
   const nav = document.getElementsByClassName('side-nav')[0]
-  if (!delay) {
-    nav.style.transition = '0s'
-  } else {
-    nav.style.transition = '1s cubic-bezier(0.66, 0.89, 0.23, 1.01)'
+
+  if (bp) {
+    if (!delay) {
+      nav.style.transition = '0s'
+    } else {
+      nav.style.transition = '1s cubic-bezier(0.66, 0.89, 0.23, 1.01)'
+    }
+    nav.style.width = '0px'
+    nav.style.padding = '0px'
   }
-  nav.style.width = '0px'
-  nav.style.padding = '0px'
+
+  if (manualClick) {
+    nav.style.transition = '0s'
+    nav.style.transition = '1s cubic-bezier(0.66, 0.89, 0.23, 1.01)'
+    nav.style.width = '0px'
+    nav.style.padding = '0px'
+  }
 }
 
 export const enableSidenav = (delay) => {

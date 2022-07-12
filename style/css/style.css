@@ -166,8 +166,10 @@
   .side-nav span {
     color: var(--clr-side-nav-link);
     font-size: 15px; }
-  .side-nav h1 {
+  .side-nav__btm-links {
     color: white; }
+  .side-nav h1 {
+    color: white !important; }
 
 .menu-button {
   position: absolute;
@@ -281,6 +283,13 @@
     font-weight: 700;
     font-size: 15px; }
 
+.link-styles {
+  color: var(--clr-link);
+  cursor: pointer;
+  width: max-content; }
+  .link-styles:hover {
+    color: #0f3c85; }
+
 .flex-box {
   display: flex; }
 
@@ -377,7 +386,8 @@ body {
   --clr-side-nav: #141414;
   --clr-side-nav-link: #a0a1a3;
   --clr-background: rgb(242, 243, 244);
-  --clr-border: #b6b8b6; }
+  --clr-border: #b6b8b6;
+  --clr-link: #3578e5; }
 
 #root {
   overflow-x: hidden; }

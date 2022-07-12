@@ -203,8 +203,12 @@
     font-size: 15px;
   }
 
-  h1 {
+  &__btm-links {
     color: white;
+  }
+
+  h1 {
+    color: white !important;
   }
 }
 
@@ -352,5 +356,14 @@
       font-weight: 700;
       font-size: 15px;
     }
+  }
+}
+
+.link-styles {
+  color: var(--clr-link);
+  cursor: pointer;
+  width: max-content;
+  &:hover {
+    color: #0f3c85;
   }
 }
