@@ -12,7 +12,7 @@ const Faq = () => {
       />
 
       <AccordionWrapper
-        accordionTitle={'I need ETH on Rinkeby'}
+        accordionTitle={'I need ETH on Rinkeby to test this thing'}
         accordionDetails={
           <>
             Get some from <a href="https://rinkebyfaucet.com/">here</a>
