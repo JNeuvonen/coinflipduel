@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useMemo } from 'react'
-import { MetamaskIcon, WarningIcon } from '../../utils/icons'
-import web3 from '../../ethereum/web3'
-import { formatAddress } from '../../utils/functions/ethereumUtils'
-import { useSelect } from '@mui/base'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import Web3 from 'web3'
 import Updaters from '../../state/utils'
 import { enableBlur } from '../../utils/functions/css'
-import Web3 from 'web3'
+import { formatAddress } from '../../utils/functions/ethereumUtils'
+import { MetamaskIcon, WarningIcon } from '../../utils/icons'
 const MetamaskConnect = (props) => {
   const [metamask, setMetamask] = useState(false)
   const accounts = useSelector((state) => state.account)

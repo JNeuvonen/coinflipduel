@@ -3,12 +3,9 @@ import { useSelector } from 'react-redux'
 import web3 from '../../ethereum/web3'
 import Updaters from '../../state/utils'
 import { disableBlur } from '../../utils/functions/css'
-import {
-  formatAddress,
-  formatBetsize,
-} from '../../utils/functions/ethereumUtils'
+import { formatBetsize } from '../../utils/functions/ethereumUtils'
 import { copyToClipBoard } from '../../utils/functions/general'
-import { CancelIcon, CopyIcon, EthereumIcon, LinkIcon } from '../../utils/icons'
+import { CancelIcon, EthereumIcon } from '../../utils/icons'
 import ViewOnEtherScan from '../ViewOnEtherscan'
 const Account = (props) => {
   const account = useSelector((state) => state.account)

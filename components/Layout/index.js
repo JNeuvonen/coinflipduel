@@ -1,10 +1,5 @@
-import Head from 'next/head'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import {
-  updateInfoMessageTimeout,
-  updateInfoMessageType,
-} from '../../state/action-creators'
 import Updaters from '../../state/utils'
 import {
   disableBlur,

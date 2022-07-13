@@ -1,6 +1,7 @@
 import { useMediaQuery } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useState } from 'react'
+import btcJSON from '../../assets/JSON/icons8-bitcoin (1).json'
 import { Link } from '../../routes'
 import {
   disableBlur2,
@@ -8,15 +9,8 @@ import {
   enableBlur2,
   enableSidenav,
 } from '../../utils/functions/css'
-import {
-  DuelIcon,
-  MenuIcon,
-  OverviewIcon,
-  SiteIcon,
-  SourceCodeIcon,
-} from '../../utils/icons'
+import { DuelIcon, MenuIcon, OverviewIcon } from '../../utils/icons'
 import PermaLoopAnimation from '../PermaLoopAnimation'
-import btcJSON from '../../assets/JSON/icons8-bitcoin (1).json'
 const Nav = () => {
   const bp850 = useMediaQuery('(max-width:850px)')
   const [showNav, setShowNav] = useState(false)
