@@ -7,7 +7,7 @@ const Faq = () => {
       <h1 style={{ fontSize: 28, fontWeight: 800 }}>FAQ</h1>
       <AccordionWrapper
         accordionTitle={'Why?'}
-        accordionDetails={'Why not?'}
+        accordionDetails={<>Why not? 💩</>}
         styles={{ marginTop: 20 }}
       />
 
